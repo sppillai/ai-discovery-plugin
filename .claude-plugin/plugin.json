@@ -1,0 +1,9 @@
+{
+  "name": "ai-product-discovery",
+  "version": "1.0.0",
+  "description": "MIT Disciplined Entrepreneurship framework with autonomous AI agents for product validation",
+  "author": {
+    "name": "Shyam Pillai"
+  },
+  "keywords": ["product-discovery", "entrepreneurship", "validation", "MIT", "agents"]
+}
