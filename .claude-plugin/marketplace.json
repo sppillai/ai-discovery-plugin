@@ -1,0 +1,13 @@
+{
+  "name": "ai-discovery",
+  "owner": {
+    "name": "Shyam Pillai"
+  },
+  "plugins": [
+    {
+      "name": "ai-product-discovery",
+      "source": "./",
+      "description": "MIT Disciplined Entrepreneurship framework with autonomous AI agents for product validation"
+    }
+  ]
+}
