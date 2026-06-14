@@ -2,6 +2,18 @@
 
 A Claude Code plugin that runs the **MIT Disciplined Entrepreneurship** 24-step validation framework for any product idea — with four AI agents doing the research, and you doing the real-world work only you can do.
 
+## About MIT Disciplined Entrepreneurship
+
+[Disciplined Entrepreneurship](https://entrepreneurship.mit.edu/disciplined-entrepreneurship/) was created by **Bill Aulet**, Managing Director of the [Martin Trust Center for MIT Entrepreneurship](https://entrepreneurship.mit.edu). It is a structured, 24-step framework for building successful startups — developed from decades of research and teaching at MIT and refined through thousands of entrepreneurs worldwide.
+
+The core insight is that entrepreneurship is not a talent you're born with — it's a discipline you can learn. The framework forces founders to answer hard questions in the right order: Who exactly is your customer? What is their life like today? Why would they pay for your solution? What's the business model? How do you get to them? Each answer builds on the last, and skipping steps is how startups waste months building things nobody wants.
+
+The framework is documented in the book **[Disciplined Entrepreneurship: 24 Steps to a Successful Startup](https://www.amazon.com/Disciplined-Entrepreneurship-Steps-Successful-Startup/dp/1118692284)** (Wiley, 2013) and the companion **[Disciplined Entrepreneurship Workbook](https://www.amazon.com/Disciplined-Entrepreneurship-Workbook-Bill-Aulet/dp/1119365791)** (Wiley, 2017). Additional resources, case studies, and instructor materials are available at the [MIT Entrepreneurship website](https://entrepreneurship.mit.edu).
+
+> This plugin is an independent implementation of the DE framework for use with Claude Code. It is not affiliated with or endorsed by MIT or Bill Aulet. All intellectual credit for the framework belongs to Bill Aulet and the Martin Trust Center for MIT Entrepreneurship.
+
+---
+
 ## What It Does
 
 Solo founders waste 3–6 months building products nobody wants. This plugin enforces rigorous validation before you write a single line of code. You describe your idea, four AI agents work through the full 24-step MIT DE framework, and at every step you either approve the output or go do real-world work (customer interviews, pricing conversations, PMF surveys) that the AI brings back into the analysis.
