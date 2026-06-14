@@ -135,31 +135,48 @@ Used when the human must go do something the AI cannot (interviews, conversation
 
 When the human says "let's pivot", "wrong customer", "this isn't working" — or when the Step 22 PMF score is below 40% — the Supervisor triggers the pivot protocol.
 
-### Minor pivot (same direction, adjust assumptions)
-Re-run specific invalidated steps in-place. Save old files as `{name}-v1.md` before overwriting.
+**A pivot is a partial branch, not a full restart.** The PIVOT-N/ folder has the full 6-phase structure, but only re-runs from the earliest step the new direction invalidates. Steps before that point are copied from the original with a "Carried over" note.
 
-### Major pivot (new customer segment, problem, or solution)
-A new sibling folder is created. The project stays intact; the pivot runs in parallel:
+### Restart point by what changed
+
+The Supervisor asks "What changed?" and maps the answer to a restart step:
+
+| What changed | Restart from | Steps carried over |
+|-------------|-------------|-------------------|
+| Target customer segment | Step 1 | None |
+| Problem / pain point (same customer) | Step 3 | 1–2 |
+| Solution / positioning (same customer, same problem) | Step 7 | 1–6 |
+| Business model / revenue model | Step 9 | 1–8 |
+| GTM channel / acquisition strategy only | Step 12 | 1–11 |
+| Need different experiments | Step 19 | 1–18 |
+| MVP scope only | Step 20 | 1–19 |
+
+### Minor pivot
+Re-run specific steps in-place. Save old files as `{name}-v1.md` before overwriting. No new folder.
+
+### Major pivot — folder structure
 
 ```
 my-project/
-  project-state.json          ← original
+  project-state.json              ← original (activePivot → "PIVOT-1")
   PHASE-1-MARKET-SELECTION/
   ...
-  PIVOT-1/                    ← new direction
-    PIVOT-RATIONALE.md        ← what we learned + new hypothesis
-    project-state.json        ← fresh state from earliest invalidated step
-    PHASE-1-MARKET-SELECTION/
+  PIVOT-1/                        ← partial branch from restart step
+    PIVOT-RATIONALE.md            ← why, what changed, restart step, new hypothesis
+    project-state.json            ← currentStep = restart step; stepsCompleted = carried-over
+    PHASE-1-MARKET-SELECTION/     ← copied from original if steps 1–2 carried over
+    PHASE-2-USER-RESEARCH/        ← copied from original if steps 3–6 carried over
+    PHASE-3-VALUE-PROPOSITION/    ← fresh if restart ≤ step 7
+    ...
+  PIVOT-2/                        ← sibling (not nested) if a second pivot is needed
     ...
 ```
 
-**Pivot rationale file** (`PIVOT-1/PIVOT-RATIONALE.md`) records:
-- What we learned that triggered the pivot
-- Which assumptions failed
-- New direction
-- Steps carried over (still valid) vs. steps to re-run
+Carried-over files are prepended with: `> ⚠ Carried from original direction — validated and still applicable.`
 
 At Step 22, if PMF < 40%, the Supervisor proactively asks: "PMF threshold not met — do you want to pivot the problem, solution, or segment, or continue to iterate?"
+
+If a second pivot is needed while inside PIVOT-1/, PIVOT-2/ is created as a sibling at the root level — not nested inside PIVOT-1/.
 
 ## External Skills — Integration Map
 

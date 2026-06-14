@@ -218,54 +218,89 @@ When reading `project-state.json` at session start and `humanActionPending: true
 
 ## Pivot Protocol
 
-When a human signals a pivot — "let's pivot", "the interviews showed the wrong customer", "this isn't working" — or when PMF score at Step 22 is below 40%:
+### What triggers a pivot
 
-### Pivot detection
-
-Listen for these signals:
 - Explicit: "let's pivot", "I want to change direction", "this assumption was wrong"
-- Implicit from findings: interview findings that contradict beachhead segment, PMF score <40%, pricing experiments that fail
-- At Step 22: if PMF score <40%, proactively ask "PMF threshold not met — pivot the problem, solution, or segment?"
+- Implicit: interview findings contradict the beachhead segment, pricing conversations fail, PMF <40%
+- At Step 22: if PMF score <40%, proactively ask "PMF threshold not met — do you want to pivot the problem, solution, or segment?"
 
-### Pivot execution
+### Core mechanic: partial branch, not full restart
 
-1. **Ask which type of pivot**: "Is this a minor adjustment (refine same direction) or a major pivot (new customer/problem)?"
+A pivot creates a PIVOT-N/ folder with the full 6-phase structure, but only re-runs from the earliest step the new direction invalidates. Steps before that point are copied from the original. No wasted work.
 
-   - **Minor**: re-run specific steps in-place, save old files as `{filename}-v1.md` before overwriting
-   - **Major**: create new pivot folder (see below)
+### Restart point by what changed
 
-2. **For a major pivot**, create `PIVOT-{N}/` folder:
+First, ask: "What changed that's driving the pivot?" Then map to the restart step:
+
+| What changed | Restart from | Steps carried over |
+|-------------|-------------|-------------------|
+| Target customer segment | Step 1 | None — everything assumed the wrong buyer |
+| Problem / pain point (same customer) | Step 3 | 1–2 |
+| Solution / positioning (same customer, same problem) | Step 7 | 1–6 |
+| Business model / revenue model | Step 9 | 1–8 |
+| GTM channel / acquisition strategy only | Step 12 | 1–11 |
+| Need different experiments / hypothesis testing | Step 19 | 1–18 |
+| MVP scope only (features wrong or too big) | Step 20 | 1–19 |
+
+### Minor vs. major pivot
+
+- **Minor** (same direction, adjust one assumption): re-run the specific steps in-place; save old files as `{name}-v1.md` before overwriting. No new folder needed.
+- **Major** (new customer, problem, or solution): create a PIVOT-N/ folder (see below).
+
+### Major pivot execution — 7 steps
+
+1. **Classify**: map "what changed" to the restart-point table to determine restart step.
+
+2. **Create PIVOT-N/** with the full 6-phase structure:
    ```
    PIVOT-1/
-     PIVOT-RATIONALE.md    ← document what was learned + new direction
-     project-state.json    ← fresh state starting from earliest invalidated step
+     PIVOT-RATIONALE.md
+     project-state.json
      PHASE-1-MARKET-SELECTION/deliverables/
      PHASE-2-USER-RESEARCH/deliverables/
-     ... (same structure as root)
+     PHASE-3-VALUE-PROPOSITION/deliverables/
+     PHASE-4-BUSINESS-MODEL/deliverables/
+     PHASE-5-VALIDATION/deliverables/
+     PHASE-6-EXECUTION/deliverables/
    ```
 
-3. **Write `PIVOT-RATIONALE.md`** with these sections:
-   - What we learned (key insight from human findings or PMF data)
-   - Which assumptions failed
-   - New direction: [customer / problem / solution change]
-   - Steps carried over from original (still valid)
-   - Steps to re-run (invalidated by pivot)
+3. **Write PIVOT-N/PIVOT-RATIONALE.md**:
+   ```
+   ## Why We Pivoted
+   - Triggered at step: N
+   - Insight: [what the human learned]
+   - What changed: [customer / problem / solution / business model]
+   - Restart step: [step number]
+   - Steps carried over: [list]
+   - Steps to re-run: [list]
+   - New hypothesis: [one sentence]
+   ```
 
-4. **Copy carried-over step files** from original into PIVOT-{N}/ with a header note: `> Carried from original direction — still valid.`
+4. **Copy carried-over step files** from original into the correct PIVOT-N/ phase folders, prepending:
+   `> ⚠ Carried from original direction — validated and still applicable.`
 
-5. **Update `project-state.json`** with pivot history:
+5. **Set PIVOT-N/project-state.json** — `currentStep` = restart step; `stepsCompleted` = carried-over step numbers:
    ```json
    {
+     "currentStep": 9,
+     "stepsCompleted": [1, 2, 3, 4, 5, 6, 7, 8],
+     "carriedFromOriginal": true,
+     "humanActionPending": false,
      "pivotHistory": [{
        "pivotNumber": 1,
-       "triggeredAtStep": 6,
-       "reason": "Interviews revealed wrong customer segment",
-       "newDirection": "Target department heads instead of ICs",
-       "pivotFolder": "PIVOT-1/",
-       "stepsCarriedOver": [1, 2]
-     }],
-     "activePivot": "PIVOT-1"
+       "triggeredAtStep": 15,
+       "reason": "Advisors confirmed pricing model doesn't work for enterprise",
+       "whatChanged": "business model",
+       "restartStep": 9,
+       "stepsCarriedOver": [1, 2, 3, 4, 5, 6, 7, 8]
+     }]
    }
    ```
 
-6. **Resume** from the earliest step that the pivot invalidates, working inside the `PIVOT-{N}/` folder.
+6. **Update root project-state.json**: set `"activePivot": "PIVOT-1"` and append the same entry to root `pivotHistory`.
+
+7. **Resume inside PIVOT-N/** from the restart step, routing to the correct agent as normal.
+
+### Pivot within a pivot
+
+If a second pivot is needed while working inside PIVOT-1/, create PIVOT-2/ as a **sibling** of PIVOT-1/ — not nested inside it. Both appear at the root level as alternative directions. Root `project-state.json` `activePivot` tracks which is current.
