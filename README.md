@@ -170,3 +170,59 @@ claude plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill
 - Claude Code with plugin support
 - `anthropic-skills` for Excel, Word, and PowerPoint generation
 - Brave Search MCP for real market data (optional but strongly recommended)
+
+---
+
+## Attribution
+
+### External Claude Code Skill Repos
+
+This plugin invokes skills from the following open-source repositories. Full credit to their authors:
+
+| Repo | Author | License | What it contributes |
+|------|--------|---------|---------------------|
+| [phuryn/pm-skills](https://github.com/phuryn/pm-skills) | [@phuryn](https://github.com/phuryn) | MIT | 68 modular PM skills across market research, product strategy, execution, GTM, data analytics, and more |
+| [deanpeters/Product-Manager-Skills](https://github.com/deanpeters/Product-Manager-Skills) | [Dean Peters](https://github.com/deanpeters) | CC BY-NC-SA 4.0 | 49 pedagogic PM skills including JTBD, discovery interviews, pricing advisor, growth advisor, PRD development, and epic breakdown |
+| [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | [@nextlevelbuilder](https://github.com/nextlevelbuilder) | MIT | Design system generator covering style, color palette, typography, and anti-patterns for 161 product types |
+| [ChatPRD/lennys-podcast-transcripts](https://github.com/ChatPRD/lennys-podcast-transcripts) | [ChatPRD](https://github.com/ChatPRD) | — | Indexed archive of 269 Lenny's Podcast episodes; fetched at each step as a real-world expert reference |
+
+### Lenny's Podcast
+
+The agents fetch episode transcripts from [Lenny's Podcast](https://www.lennyspodcast.com) — hosted by **Lenny Rachitsky** — at each step of the framework. The podcast is one of the most respected product and growth resources, featuring in-depth conversations with founders, PMs, and investors from companies including Airbnb, Figma, Notion, Stripe, Linear, and many others. All transcript content belongs to Lenny Rachitsky and the respective guests.
+
+### Frameworks and Methodologies Referenced in the Skills
+
+The external skill repos draw on established product management frameworks and the work of leading practitioners. Attribution for the key methodologies used throughout this workflow:
+
+**Product Strategy & Market Research**
+- **Jobs to Be Done (JTBD)** — [Clayton Christensen](https://claytonchristensen.com) (Harvard Business School), [Tony Ulwick](https://jobs-to-be-done.com) (Strategyn), and [Bob Moesta](https://therewiredgroup.com) (ReWired Group)
+- **Opportunity Solution Tree** — [Teresa Torres](https://www.producttalk.org) (Product Talk)
+- **Business Model Canvas** — [Alexander Osterwalder](https://www.strategyzer.com) and Yves Pigneur, *Business Model Generation* (Wiley, 2010)
+- **Lean Canvas** — [Ash Maurya](https://leanfoundry.com), adapted from the Business Model Canvas
+- **Ansoff Matrix** — Igor Ansoff, *Corporate Strategy* (McGraw-Hill, 1965)
+- **Porter's Five Forces** — [Michael E. Porter](https://www.isc.hbs.edu) (Harvard Business School), *Competitive Strategy* (Free Press, 1980)
+
+**User Research & Discovery**
+- **Discovery Interview Methodology** — [Steve Blank](https://steveblank.com), *The Four Steps to the Epiphany* (2003), and [Bob Moesta](https://therewiredgroup.com)
+- **Empathy Mapping** — [Dave Gray](https://xplaner.com), XPLANE
+- **Customer Journey Mapping** — widely attributed to multiple practitioners; formalized in service design literature
+
+**Validation & Experimentation**
+- **Pretotyping** — [Alberto Savoia](https://www.pretotyping.org) (Google), *The Right It* (HarperBusiness, 2019)
+- **Product-Market Fit Survey ("40% very disappointed")** — [Sean Ellis](https://seanellis.me), founder of GrowthHackers
+- **Build–Measure–Learn loop** — [Eric Ries](https://theleanstartup.com), *The Lean Startup* (Crown Business, 2011)
+
+**Pricing**
+- **Van Westendorp Price Sensitivity Meter** — Peter Van Westendorp (1976), widely used in SaaS pricing research
+- **Value-Based Pricing frameworks** — [Madhavan Ramanujam](https://www.simon-kucher.com) and Georg Tacke, *Monetizing Innovation* (Wiley, 2016)
+
+**Growth & Go-to-Market**
+- **McKinsey Growth Pyramid** — McKinsey & Company
+- **Growth Loops** — [Brian Balfour](https://brianbalfour.com) (Reforge) and the Reforge growth framework
+- **North Star Metric** — [Sean Ellis](https://seanellis.me); formalized by Amplitude in *North Star Playbook*
+- **OKRs (Objectives & Key Results)** — Andy Grove (Intel), popularized by [John Doerr](https://www.whatmatters.com), *Measure What Matters* (Portfolio/Penguin, 2018)
+
+**Execution**
+- **Pre-mortem technique** — [Gary Klein](https://www.kleinsinsights.com), *Sources of Power* (MIT Press, 1998)
+- **MoSCoW prioritization** — Dai Clegg (Dynamic Systems Development Method, 1994)
+- **Story Points & Agile Sprints** — [Ken Schwaber](https://kenschwaber.wordpress.com) and Jeff Sutherland, *Scrum: The Art of Doing Twice the Work in Half the Time* (Crown Business, 2014)
