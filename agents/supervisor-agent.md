@@ -46,6 +46,26 @@ Synthesize all research from previous steps to identify 5-7 critical assumptions
 
 Save `PHASE-5-VALIDATION/step-19-assumptions.md`
 
+**Create findings template** `PHASE-5-VALIDATION/step-19-human-review.md`:
+```
+# Step 19 — Your Assumption Review
+
+Review the assumption matrix above. Fill in this file, then return to Claude.
+
+## Assumptions I'd Add (AI missed these)
+- 
+
+## My Priority Ranking (reorder the matrix)
+1. [highest risk assumption]
+2. 
+
+## First Experiments I Want to Run
+- 
+
+## Other Notes
+```
+Save `project-state.json` with `humanActionPending: true`, then show Step 19 checkpoint with Format B.
+
 **Step 24 — Launch Preparation**
 
 **Invoke external skills first:**
@@ -55,6 +75,24 @@ Save `PHASE-5-VALIDATION/step-19-assumptions.md`
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/go-to-market.md` → extract launch playbook patterns from top 2 episodes
 
 Save `PHASE-6-EXECUTION/step-24-launch-prep.md`
+
+**Create findings template** `PHASE-6-EXECUTION/step-24-launch-log.md`:
+```
+# Step 24 — Your Launch Log
+
+The AI has drafted everything above. Now you execute. Fill in as you complete each item.
+
+## Completed Launch Actions
+- [ ] Landing page live at: 
+- [ ] Analytics configured (tool: )
+- [ ] Email sent to waitlist (N recipients): 
+- [ ] Social post published (link): 
+- [ ] Product Hunt / HN posted (link): 
+- [ ] First user signups: 
+
+## What I Learned from Launch
+```
+Save `project-state.json` with `humanActionPending: true`, then show Step 24 checkpoint with Format B.
 
 **invoke `anthropic-skills:docx`** to create `PHASE-6-EXECUTION/deliverables/go-to-market-plan.docx`
 - GTM strategy summary
@@ -104,7 +142,11 @@ Save `DELIVERABLES-SUMMARY/next-steps.md`
 
 ## Human Checkpoint — Every Step
 
-After every step completes (whether you ran it or a sub-agent did), present this prompt before routing to the next step:
+After every step completes (whether you ran it or a sub-agent did), present the appropriate checkpoint format before routing to the next step.
+
+### Format A — Fully autonomous steps (no human real-world action needed)
+
+Use for Steps: 1, 2, 4, 5, 7, 8, 9, 10, 13, 14, 16, 17, 18, 21
 
 ```
 ✅ Step N complete — [one-line summary]
@@ -115,9 +157,47 @@ After every step completes (whether you ran it or a sub-agent did), present this
    → Type "yes" to continue / describe what to change
 ```
 
-- **"yes" / "continue"** → route to next step immediately
-- **Any other response** → pass feedback to the responsible agent, have it revise, re-present checkpoint
-- Always save `project-state.json` **before** showing the checkpoint
+### Format B — Steps requiring human real-world action
+
+Use when the step below requires the human to go do something the AI cannot do (interviews, conversations, surveys, decisions). Create a findings template file and set `humanActionPending` in state before showing this.
+
+```
+✅ Step N complete — [one-line summary]
+
+📄 Deliverables: [list files created this step]
+
+🙋 Your Actions Required:
+  1. [Specific task with clear instructions]
+  2. [Additional task if needed]
+  ↩ Come back and paste what you found, or type "skip" to continue with AI assumptions.
+
+👉 Ready to continue to Step N+1?
+   → Type "yes" or paste your findings / describe what to change
+```
+
+### Human action steps and what to ask
+
+| Step | Human Action Prompt |
+|------|---------------------|
+| 3 | List 5-10 people you know who match the user profile. For each: name, role, how you'll reach them. |
+| 6 | Conduct 5 customer discovery interviews using the guide above. Record key quotes, confirmed/denied pain points, surprises. Return and paste your notes. |
+| 11 | Run 3-5 willingness-to-pay conversations: "What would you expect to pay? At what price is this too expensive? Too cheap?" |
+| 12 | Map your personal network — list 10 potential early customers you could reach this week. |
+| 15 | Share the business model canvas with 2-3 trusted advisors or potential customers. Collect feedback on the revenue model. |
+| 19 | Review the assumption matrix. Add any assumptions the AI missed from your direct experience. Flag which you want to test first. |
+| 20 | Pick one experiment from the options above and commit to a start date (e.g., "I'll run the landing page test this week"). |
+| 22 | Run the Sean Ellis survey with at least 40 users: "How disappointed would you be if this product no longer existed?" Target >40% "very disappointed." |
+| 23 | Decide: solo, hire, outsource, or co-founder? Approve or override the tech stack recommendation. |
+| 24 | Execute the launch checklist — the AI drafted everything, but you must pull the trigger: set up the landing page, configure analytics, post on Product Hunt / HN. |
+
+### Checkpoint response handling
+
+- **"yes" / "continue"** → set `humanActionPending: false`, route to next step immediately
+- **Pasted findings or feedback** → incorporate into next step's analysis, set `humanActionPending: false`, proceed
+- **"skip"** → continue with AI-generated assumptions, note skip in project-state.json
+- **Any other revision request** → pass feedback to the responsible agent, have it revise, re-present checkpoint
+
+Always save `project-state.json` **before** showing the checkpoint.
 
 ## State Management
 
@@ -125,4 +205,67 @@ After each step:
 - Add step to `stepsCompleted` array
 - Update `currentStep` to next step
 - Record generated files in `outputsGenerated`
+- For human-action steps: set `humanActionPending: true`, `humanActionFile: "<path>"`, `humanActionSummary: "<one line>"`
+- When human returns with findings: set `humanActionPending: false`, record findings in `humanFindings[stepN]`
 - Save project-state.json immediately
+
+### Resuming a session with pending human action
+
+When reading `project-state.json` at session start and `humanActionPending: true`:
+1. Read the `humanActionFile` to see what's already been filled in
+2. If the file has findings → incorporate them and proceed to `currentStep`
+3. If the file is still a blank template → re-show the human action checkpoint prompt for `currentStep - 1`
+
+## Pivot Protocol
+
+When a human signals a pivot — "let's pivot", "the interviews showed the wrong customer", "this isn't working" — or when PMF score at Step 22 is below 40%:
+
+### Pivot detection
+
+Listen for these signals:
+- Explicit: "let's pivot", "I want to change direction", "this assumption was wrong"
+- Implicit from findings: interview findings that contradict beachhead segment, PMF score <40%, pricing experiments that fail
+- At Step 22: if PMF score <40%, proactively ask "PMF threshold not met — pivot the problem, solution, or segment?"
+
+### Pivot execution
+
+1. **Ask which type of pivot**: "Is this a minor adjustment (refine same direction) or a major pivot (new customer/problem)?"
+
+   - **Minor**: re-run specific steps in-place, save old files as `{filename}-v1.md` before overwriting
+   - **Major**: create new pivot folder (see below)
+
+2. **For a major pivot**, create `PIVOT-{N}/` folder:
+   ```
+   PIVOT-1/
+     PIVOT-RATIONALE.md    ← document what was learned + new direction
+     project-state.json    ← fresh state starting from earliest invalidated step
+     PHASE-1-MARKET-SELECTION/deliverables/
+     PHASE-2-USER-RESEARCH/deliverables/
+     ... (same structure as root)
+   ```
+
+3. **Write `PIVOT-RATIONALE.md`** with these sections:
+   - What we learned (key insight from human findings or PMF data)
+   - Which assumptions failed
+   - New direction: [customer / problem / solution change]
+   - Steps carried over from original (still valid)
+   - Steps to re-run (invalidated by pivot)
+
+4. **Copy carried-over step files** from original into PIVOT-{N}/ with a header note: `> Carried from original direction — still valid.`
+
+5. **Update `project-state.json`** with pivot history:
+   ```json
+   {
+     "pivotHistory": [{
+       "pivotNumber": 1,
+       "triggeredAtStep": 6,
+       "reason": "Interviews revealed wrong customer segment",
+       "newDirection": "Target department heads instead of ICs",
+       "pivotFolder": "PIVOT-1/",
+       "stepsCarriedOver": [1, 2]
+     }],
+     "activePivot": "PIVOT-1"
+   }
+   ```
+
+6. **Resume** from the earliest step that the pivot invalidates, working inside the `PIVOT-{N}/` folder.

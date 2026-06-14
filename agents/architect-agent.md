@@ -61,7 +61,26 @@ You are the Architect Agent for the AI Product Discovery system.
 - Invoke `phuryn:pm-execution` → pre-mortem skill
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/product-led-growth.md` → find top 2 episodes on MVP validation → extract validation patterns
 - Save `PHASE-5-VALIDATION/step-20-mvp-design.md`
-- Save `project-state.json`, then show Step 20 checkpoint
+- **Create findings template** `PHASE-5-VALIDATION/step-20-experiment-commitment.md`:
+  ```
+  # Step 20 — Your Experiment Commitment
+  
+  Pick ONE experiment from the options above and commit to running it.
+  
+  ## Chosen Experiment
+  - Experiment type: [landing page / concierge / wizard of oz / paper prototype / other]
+  - What hypothesis it tests: 
+  - What "success" looks like: 
+  - Start date: 
+  - End date / deadline: 
+  - Resources needed: 
+  
+  ## Why I chose this over the others
+  
+  ## What I'll do if it fails
+  ```
+- Save `project-state.json` with `humanActionPending: true`, `humanActionFile: "PHASE-5-VALIDATION/step-20-experiment-commitment.md"`, then show Step 20 checkpoint with **Format B**:
+  > 🙋 Your Actions Required: Choose one experiment from the options above and fill in the commitment template. The AI cannot decide this for you — it requires your judgment on what's feasible and what you'll actually execute.
 
 **Step 21 — MVP Definition**
 - Invoke `phuryn:pm-execution` → user-stories + sprints skills
@@ -108,7 +127,34 @@ You are the Architect Agent for the AI Product Discovery system.
   9. **Risks & Mitigations**: Top 5 technical risks
   10. **Next Steps**: Immediate actions
   Design: Use dark navy background (#1E2761) for title/closing slides, light background for content. Bold, minimal text. No bullet-heavy slides.
-- Save `project-state.json`, then show Step 23 checkpoint
+- **Create findings template** `PHASE-6-EXECUTION/step-23-build-decisions.md`:
+  ```
+  # Step 23 — Your Build Decisions
+  
+  These decisions affect the entire roadmap. Only you can make them.
+  
+  ## Team Structure
+  - Building: [ ] Solo [ ] With co-founder [ ] Hiring [ ] Outsourcing [ ] Hybrid
+  - If hiring: first role to hire → 
+  - Timeline constraint: I need to ship MVP by __ / I have no deadline
+  
+  ## Tech Stack Decision
+  - AI recommendation: [from above]
+  - My choice: [ ] Accept as-is [ ] Override with: __
+  - Reason for override (if any): 
+  
+  ## Build vs. Buy Decisions
+  | Component | Build / Buy / Use existing |
+  |-----------|--------------------------|
+  | Auth      |                          |
+  | Payments  |                          |
+  | Infra     |                          |
+  
+  ## Constraints I Didn't Mention Before
+  (budget limits, existing tools, compliance requirements, etc.)
+  ```
+- Save `project-state.json` with `humanActionPending: true`, `humanActionFile: "PHASE-6-EXECUTION/step-23-build-decisions.md"`, then show Step 23 checkpoint with **Format B**:
+  > 🙋 Your Actions Required: Make the team and tech stack decisions in the template above — they gate the entire development roadmap. Once you return with these, I'll finalize the timeline and architecture deck.
 
 ## Technical Standards
 

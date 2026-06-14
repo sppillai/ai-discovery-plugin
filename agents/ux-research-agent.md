@@ -25,7 +25,22 @@ You are the UX Research Agent for the AI Product Discovery system.
   4. What does their typical day look like?
   5. What metrics matter to them professionally?
 - Save `PHASE-2-USER-RESEARCH/step-3-end-user-profile.md`
-- Save `project-state.json`, then show Step 3 checkpoint
+- **Create findings template** `PHASE-2-USER-RESEARCH/step-3-network-map.md`:
+  ```
+  # Step 3 — Your Network Map
+  
+  List 5-10 people you know who match the user profile above.
+  Fill this in, then return to Claude so we can move to persona development.
+  
+  | Name | Role | Company | How you know them | Will they talk to you? |
+  |------|------|---------|------------------|----------------------|
+  |      |      |         |                  | Yes / Maybe / No     |
+  
+  ## Notes on Access
+  (Any cold outreach you're considering? Warm intros?)
+  ```
+- Save `project-state.json` with `humanActionPending: true`, `humanActionFile: "PHASE-2-USER-RESEARCH/step-3-network-map.md"`, then show Step 3 checkpoint with **Format B**:
+  > 🙋 Your Actions Required: List 5-10 people in your network who match this user profile in the template above. We need real names to schedule interviews in Step 6.
 
 **Step 4 — Personas**
 - Invoke `phuryn:pm-market-research` → persona-development skill
@@ -76,10 +91,45 @@ You are the UX Research Agent for the AI Product Discovery system.
   - Footer with project name and date
   - Table of contents
   - Tips for interviewers in sidebar notes
-- Save `project-state.json`, then show Step 6 checkpoint
+- **Create findings template** `PHASE-2-USER-RESEARCH/step-6-interview-findings.md`:
+  ```
+  # Step 6 — Customer Interview Findings
+  
+  Use the interview guide above to conduct 5 interviews. Fill in one section per interview.
+  
+  ## Interview 1
+  - Interviewee: [role / company type]
+  - Key quotes: 
+  - Pain points confirmed: 
+  - Pain points denied: 
+  - Surprises: 
+  
+  ## Interview 2
+  [repeat]
+  
+  ## Interview 3
+  [repeat]
+  
+  ## Interview 4
+  [repeat]
+  
+  ## Interview 5
+  [repeat]
+  
+  ## Key Themes Across Interviews
+  - Top pain confirmed by N/5 interviewees: 
+  - Biggest surprise: 
+  - Quotes to keep: 
+  - Should we pivot? (yes / no / maybe): 
+  ```
+- Save `project-state.json` with `humanActionPending: true`, `humanActionFile: "PHASE-2-USER-RESEARCH/step-6-interview-findings.md"`, then show Step 6 checkpoint with **Format B**:
+  > 🙋 Your Actions Required: Conduct 5 customer discovery interviews using the guide and Word doc above. Fill in the findings template, then return here. This is the most important real-world step in the whole process — don't skip it.
+
+**At the start of Step 7**: Read `step-6-interview-findings.md` and incorporate real customer quotes and validated pain points into the value proposition work before starting.
 
 ### Phase 5 (Step 22): PMF Confirmation
 
+- First, check if `humanActionPending` from Step 22 is true and findings file exists — if so, read `step-22-pmf-survey.md` before running analysis
 - Invoke `deanpeters:organic-growth-advisor` (McKinsey PMF signals)
 - Invoke `phuryn:pm-product-discovery` → metrics-dashboard + opportunity-solution-tree skills
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/product-market-fit.md` → find top 2-3 episodes (Sean Ellis, Brian Balfour, etc.) → extract PMF signal patterns
@@ -92,7 +142,33 @@ You are the UX Research Agent for the AI Product Discovery system.
   - Recommendation: Proceed / Pivot / Stop
   - Next steps
 - Save `PHASE-5-VALIDATION/step-22-pmf-confirmation.md`
-- Save `project-state.json`, then show Step 22 checkpoint
+- **Create findings template** `PHASE-5-VALIDATION/step-22-pmf-survey.md`:
+  ```
+  # Step 22 — PMF Survey Results
+  
+  Run the Sean Ellis survey with at least 40 active users.
+  Question: "How disappointed would you be if [product] no longer existed?"
+  
+  ## Survey Results
+  - Total respondents: 
+  - Very disappointed: __% (target: >40%)
+  - Somewhat disappointed: __%
+  - Not disappointed: __%
+  
+  ## Retention Signals
+  - Are users returning without prompting? (yes / no / sometimes)
+  - Weekly active / monthly active ratio: 
+  - Notable user behavior: 
+  
+  ## Verbatim Feedback
+  (paste standout responses here)
+  
+  ## My Assessment
+  - PMF signal: Strong / Weak / Mixed
+  - Should we proceed / pivot / stop?
+  ```
+- Save `project-state.json` with `humanActionPending: true`, `humanActionFile: "PHASE-5-VALIDATION/step-22-pmf-survey.md"`, then show Step 22 checkpoint with **Format B**:
+  > 🙋 Your Actions Required: Run the Sean Ellis survey with at least 40 users and fill in the results template above. If score is below 40%, the Supervisor will prompt you to consider a pivot before continuing.
 
 ## Output Standards
 

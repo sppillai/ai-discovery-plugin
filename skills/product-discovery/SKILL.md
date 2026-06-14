@@ -14,8 +14,10 @@ version: 1.0.0
 
 When `project-state.json` exists:
 1. Read the file and announce current step and progress
-2. Continue from `currentStep` — do not repeat completed steps
-3. Load any relevant agent context files
+2. If `humanActionPending: true` → read `humanActionFile`; if the template has been filled in, incorporate findings and proceed; if still blank, re-show the human action checkpoint prompt for the previous step
+3. If `activePivot` is set → work inside that pivot folder, not the root
+4. Continue from `currentStep` — do not repeat completed steps
+5. Load any relevant agent context files
 
 ## Starting Fresh
 
@@ -89,10 +91,12 @@ All generated files by phase:
 
 ## Human Checkpoint After Every Step
 
-After completing each step, the agent presents a summary and waits for approval before proceeding:
+After completing each step, agents present a checkpoint and wait for approval before proceeding.
+
+### Format A — Autonomous steps (no real-world action needed)
 
 ```
-✅ Step N complete — [one-line summary of what was produced]
+✅ Step N complete — [one-line summary]
 
 📄 Deliverables: [list files created]
 
@@ -100,9 +104,62 @@ After completing each step, the agent presents a summary and waits for approval 
    → Type "yes" to continue / describe what to change
 ```
 
-- **"yes" / "continue"** → immediately begin next step
-- **Any feedback** → revise current step, re-present, wait for approval again
-- `project-state.json` is saved **before** showing the checkpoint so no work is lost if session ends
+### Format B — Steps requiring human real-world action
+
+Used when the human must go do something the AI cannot (interviews, conversations, surveys, decisions). A findings template file is created before the checkpoint is shown.
+
+```
+✅ Step N complete — [one-line summary]
+
+📄 Deliverables: [list files created]
+
+🙋 Your Actions Required:
+  1. [Specific task with clear instructions]
+  2. [Additional task if needed]
+  ↩ Come back and paste what you found, or type "skip" to continue with AI assumptions.
+
+👉 Ready to continue to Step N+1?
+   → Type "yes" or paste your findings / describe what to change
+```
+
+**Steps that use Format B**: 3, 6, 11, 12, 15, 19, 20, 22, 23, 24
+
+**Checkpoint response handling:**
+- **"yes" / "continue"** → set `humanActionPending: false`, immediately begin next step
+- **Pasted findings** → write findings into the template file, incorporate into next step's analysis, proceed
+- **"skip"** → continue with AI-generated assumptions, note skip in project-state.json
+- **Any revision request** → revise current step, re-present, wait for approval again
+- `project-state.json` is saved **before** showing the checkpoint so no work is lost if the session ends
+
+## Pivoting
+
+When the human says "let's pivot", "wrong customer", "this isn't working" — or when the Step 22 PMF score is below 40% — the Supervisor triggers the pivot protocol.
+
+### Minor pivot (same direction, adjust assumptions)
+Re-run specific invalidated steps in-place. Save old files as `{name}-v1.md` before overwriting.
+
+### Major pivot (new customer segment, problem, or solution)
+A new sibling folder is created. The project stays intact; the pivot runs in parallel:
+
+```
+my-project/
+  project-state.json          ← original
+  PHASE-1-MARKET-SELECTION/
+  ...
+  PIVOT-1/                    ← new direction
+    PIVOT-RATIONALE.md        ← what we learned + new hypothesis
+    project-state.json        ← fresh state from earliest invalidated step
+    PHASE-1-MARKET-SELECTION/
+    ...
+```
+
+**Pivot rationale file** (`PIVOT-1/PIVOT-RATIONALE.md`) records:
+- What we learned that triggered the pivot
+- Which assumptions failed
+- New direction
+- Steps carried over (still valid) vs. steps to re-run
+
+At Step 22, if PMF < 40%, the Supervisor proactively asks: "PMF threshold not met — do you want to pivot the problem, solution, or segment, or continue to iterate?"
 
 ## External Skills — Integration Map
 

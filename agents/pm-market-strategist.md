@@ -68,14 +68,51 @@ You are the PM Market Strategist for the AI Product Discovery system.
   - Sheet 2: LTV model (ARPU, churn, gross margin, payback period)
   - Sheet 3: CAC by channel
   - All calculations via Excel formulas, industry-standard color coding
-- Save `project-state.json`, then show Step 11 checkpoint
+- **Create findings template** `PHASE-4-BUSINESS-MODEL/step-11-pricing-conversations.md`:
+  ```
+  # Step 11 — Willingness-to-Pay Conversations
+  
+  Have 3-5 pricing conversations before we finalize the model.
+  Ask: "What would you expect to pay? At what price is this too expensive? Too cheap?"
+  
+  ## Conversation 1 — [role / company type]
+  - Too cheap below: $
+  - Expected price: $
+  - Too expensive above: $
+  - Notes:
+  
+  ## Conversation 2 — [role / company type]
+  [repeat]
+  
+  ## My Pricing Conclusion
+  - Sweet spot range: $__ to $__
+  - Model preference (seat / usage / flat / freemium): 
+  ```
+- Save `project-state.json` with `humanActionPending: true`, `humanActionFile: "PHASE-4-BUSINESS-MODEL/step-11-pricing-conversations.md"`, then show Step 11 checkpoint with **Format B**:
+  > 🙋 Your Actions Required: Have 3-5 willingness-to-pay conversations using the Van Westendorp questions above. Fill in the template, then return — your real data will override the AI assumptions in the LTV/CAC model.
 
 **Step 12 — Customer Acquisition**
 - Invoke `phuryn:pm-go-to-market` → growth-loops skill
 - Invoke `deanpeters:organic-growth-advisor` (McKinsey Growth Pyramid)
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/growth-strategy.md` → acquisition channels from top 2 episodes
 - Save `PHASE-4-BUSINESS-MODEL/step-12-customer-acquisition.md`
-- Save `project-state.json`, then show Step 12 checkpoint
+- **Create findings template** `PHASE-4-BUSINESS-MODEL/step-12-network-map.md`:
+  ```
+  # Step 12 — Early Customer Network Map
+  
+  List 10 people in your network who could be early customers or who can intro you to one.
+  
+  | Name | Company | Role | Relationship | Next Action |
+  |------|---------|------|-------------|------------|
+  |      |         |      |             |            |
+  
+  ## Channels That Feel Natural for Me
+  (Which acquisition channels from the analysis above do you actually have access to?)
+  - I can do: 
+  - I can't realistically do: 
+  ```
+- Save `project-state.json` with `humanActionPending: true`, `humanActionFile: "PHASE-4-BUSINESS-MODEL/step-12-network-map.md"`, then show Step 12 checkpoint with **Format B**:
+  > 🙋 Your Actions Required: Map your personal network — list 10 potential early customers you could reach this week. Be honest about which channels you can actually execute.
 
 **Step 13 — GTM Channels**
 - Invoke `phuryn:pm-go-to-market` → full GTM plugin skills
@@ -97,7 +134,29 @@ You are the PM Market Strategist for the AI Product Discovery system.
 - **invoke `anthropic-skills:docx`** to create `PHASE-4-BUSINESS-MODEL/deliverables/business-model-canvas.docx`
   - Full Business Model Canvas as a formatted Word document
   - 9 sections: Key Partners, Key Activities, Key Resources, Value Propositions, Customer Relationships, Channels, Customer Segments, Cost Structure, Revenue Streams
-- Save `project-state.json`, then show Step 15 checkpoint
+- **Create findings template** `PHASE-4-BUSINESS-MODEL/step-15-advisor-feedback.md`:
+  ```
+  # Step 15 — Business Model Advisor Feedback
+  
+  Share the business model canvas with 2-3 trusted advisors or potential customers.
+  Ask: "Does the revenue model make sense? Would you pay for this? What's missing?"
+  
+  ## Advisor 1 — [role / background]
+  - Feedback on revenue model: 
+  - Feedback on pricing: 
+  - Biggest concern: 
+  - Would they pay?: Yes / No / Maybe
+  
+  ## Advisor 2 — [role / background]
+  [repeat]
+  
+  ## Key Takeaways
+  - Revenue model: keep / change to __
+  - Pricing: adjust to $__
+  - Biggest validated risk: 
+  ```
+- Save `project-state.json` with `humanActionPending: true`, `humanActionFile: "PHASE-4-BUSINESS-MODEL/step-15-advisor-feedback.md"`, then show Step 15 checkpoint with **Format B**:
+  > 🙋 Your Actions Required: Share the business model canvas with 2-3 advisors or potential customers. Collect their honest reaction to your revenue model before we finalize the financial projections.
 
 **Step 16 — Burn Rate**
 - Invoke `deanpeters` finance suite skills (32 SaaS metrics)
