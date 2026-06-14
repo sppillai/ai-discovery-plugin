@@ -151,16 +151,33 @@ The agents also fetch relevant [Lenny's Podcast](https://www.lennyspodcast.com) 
 
 ## Installation
 
+### Step 1 — Install the plugin
+
 ```bash
-# Install from GitHub
 claude plugin marketplace add sppillai/ai-discovery-plugin
+claude plugin install ai-product-discovery
+```
 
-# Or install from a local clone
-claude plugin install /path/to/Ai-discovery-plugin
+### Step 2 — Install required skill packs
 
-# Install required skills
+```bash
 claude plugin marketplace add phuryn/pm-skills
 claude plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill
+```
+
+### Step 3 — Verify everything is installed
+
+```bash
+claude plugin list
+```
+
+You should see `ai-product-discovery`, `pm-skills`, and `ui-ux-pro-max-skill` all listed as enabled.
+
+### Local install (alternative)
+
+```bash
+git clone https://github.com/sppillai/ai-discovery-plugin
+claude plugin install /path/to/ai-discovery-plugin
 ```
 
 ## Requirements
