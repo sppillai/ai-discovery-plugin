@@ -171,7 +171,16 @@ claude plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill
 claude plugin list
 ```
 
-You should see `ai-product-discovery`, `pm-skills`, and `ui-ux-pro-max-skill` all listed as enabled.
+You should see `ai-product-discovery@ai-discovery`, `pm-skills`, and `ui-ux-pro-max-skill` all listed as enabled.
+
+### Updating to a newer version
+
+```bash
+claude plugin marketplace update sppillai/ai-discovery-plugin
+claude plugin update ai-product-discovery@ai-discovery
+```
+
+The plugin identifier includes `@ai-discovery` — this is the marketplace name Claude Code derives from the repo. Always use the full identifier when updating.
 
 ### Local install (alternative)
 
