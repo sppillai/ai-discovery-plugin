@@ -14,6 +14,22 @@ The framework is documented in the book **[Disciplined Entrepreneurship: 24 Step
 
 ---
 
+## Where to Use This Plugin
+
+This plugin requires **Claude Code** — Anthropic's official AI coding tool. It does not work in OpenAI Codex, GitHub Copilot, Cursor, or any other AI assistant.
+
+Claude Code is available in several surfaces — this plugin works in all of them:
+
+| Surface | How to access | Notes |
+|---------|--------------|-------|
+| **Claude Code CLI** | `claude` in your terminal | Recommended — full output, best for long-running discovery sessions |
+| **Claude Code Desktop** | [claude.ai/download](https://claude.ai/download) (Mac & Windows) | Native app with the same CLI under the hood |
+| **VS Code extension** | Install "Claude Code" from the VS Code marketplace | Run `/start-discovery` in the Claude Code panel inside VS Code |
+| **JetBrains extension** | Install from JetBrains Marketplace | Same as VS Code — works inside IntelliJ, WebStorm, etc. |
+| **claude.ai/code** | Browser at [claude.ai/code](https://claude.ai/code) | Web-based, no install needed — good for trying it out |
+
+> **Not compatible with**: OpenAI Codex, ChatGPT, GitHub Copilot, Cursor, Windsurf, or any non-Claude Code environment. Plugins are a Claude Code-specific feature.
+
 ## What It Does
 
 Solo founders waste 3–6 months building products nobody wants. This plugin enforces rigorous validation before you write a single line of code. You describe your idea, four AI agents work through the full 24-step MIT DE framework, and at every step you either approve the output or go do real-world work (customer interviews, pricing conversations, PMF surveys) that the AI brings back into the analysis.
