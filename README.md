@@ -23,7 +23,8 @@ Claude Code is available in several surfaces — this plugin works in all of the
 | Surface | How to access | Notes |
 |---------|--------------|-------|
 | **Claude Code CLI** | `claude` in your terminal | Recommended — full output, best for long-running discovery sessions |
-| **Claude Code Desktop** | Download from [claude.ai](https://claude.ai) (Mac & Windows) | Native app with the same CLI under the hood |
+| **Claude Desktop — Cowork** | Cowork tab in the Claude desktop app | Use "Work in a project" to point at your project folder, then type `/start-discovery` |
+| **Claude Desktop — Code** | Code tab in the Claude desktop app | Same CLI experience as the terminal, built into the desktop app |
 | **VS Code extension** | Install "Claude Code" from the VS Code marketplace | Run `/start-discovery` in the Claude Code panel inside VS Code |
 | **JetBrains extension** | Install from JetBrains Marketplace | Works inside IntelliJ, WebStorm, PyCharm, etc. |
 
