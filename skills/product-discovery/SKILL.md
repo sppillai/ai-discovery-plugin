@@ -237,6 +237,23 @@ At each step, agents fetch relevant transcripts from the Lenny Rachitsky podcast
 | 22 | `index/product-market-fit.md` |
 | 23-24 | `index/engineering.md`, `index/go-to-market.md` |
 
+### How Lenny Insights Are Surfaced to the User
+
+After fetching and reading Lenny transcripts at each step, agents **must** present a `💬 Expert Insight` block in the step output — shown to the user after the analysis, before the checkpoint. This is not optional and not hidden in the background.
+
+```
+💬 Expert Insight (Lenny's Podcast)
+Episode: "[Episode title]" with [Guest name]
+"[Direct quote or close paraphrase of the most relevant insight from the transcript]"
+What this means for you: [1-2 sentences applying the insight to the user's specific situation and step]
+```
+
+Rules for this block:
+- The quote must come from what was actually in the transcript, not fabricated
+- If two episodes were read, pick the one with the most relevant insight for this step
+- "What this means for you" must reference the user's actual product/market, not be generic
+- If the transcript fetch fails, skip the block and note it — do not hallucinate a quote
+
 ## Rules
 
 - **Pause after every step** — show checkpoint prompt and wait for approval

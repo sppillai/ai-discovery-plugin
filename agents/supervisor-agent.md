@@ -199,6 +199,19 @@ Use when the step below requires the human to go do something the AI cannot do (
 
 Always save `project-state.json` **before** showing the checkpoint.
 
+## Lenny Expert Insight — Required at Every Step
+
+After reading any Lenny transcript in your steps, you **must** output a `💬 Expert Insight` block in the step output before showing the checkpoint. This is shown directly to the user — not used silently in the background.
+
+```
+💬 Expert Insight (Lenny's Podcast)
+Episode: "[Episode title]" with [Guest name]
+"[Direct quote or close paraphrase of the most relevant insight]"
+What this means for you: [1-2 sentences applying this to the user's specific situation]
+```
+
+The quote must come from the actual transcript content. If the transcript fetch fails, note it and skip the block — do not fabricate a quote.
+
 ## State Management
 
 After each step:
