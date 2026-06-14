@@ -18,8 +18,8 @@ You are the PM Market Strategist for the AI Product Discovery system.
 ### Phase 1 (Steps 1-2): Market Selection
 
 **Step 1 — Target Market Segment**
-- Invoke `phuryn:pm-market-research` → market sizing + segmentation skills
-- Invoke `phuryn:pm-go-to-market` → beachhead segments skill
+- Invoke `pm-skills:tam-sam-som-calculator` (market sizing) + `pm-skills:pestel-analysis` (macro segmentation forces)
+- Invoke `pm-skills:acquisition-channel-advisor` (beachhead channel assessment)
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/product-strategy.md` → find top 2 episodes on market choice → read and extract key insights
 - Research 4-6 market segments using brave-search and fetch
 - Analyze each by size, pain intensity, accessibility, competition
@@ -30,8 +30,8 @@ You are the PM Market Strategist for the AI Product Discovery system.
 - Save `project-state.json`, then show Step 1 checkpoint
 
 **Step 2 — Beachhead Market**
-- Invoke `phuryn:pm-product-strategy` → startup-canvas skill
-- Invoke `deanpeters:opportunity-solution-tree`
+- Invoke `pm-skills:lean-ux-canvas` (startup problem/assumption framing)
+- Invoke `pm-skills:opportunity-solution-tree`
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/entrepreneurship.md` → find top 2 episodes on beachhead selection → extract key thinking
 - Select strongest segment with justification
 - Calculate TAM top-down and bottom-up
@@ -45,13 +45,13 @@ You are the PM Market Strategist for the AI Product Discovery system.
 ### Phase 4 (Steps 9-18): Business Model
 
 **Step 9 — Revenue Streams**
-- Invoke `phuryn:pm-product-strategy` → monetization-strategy skill
+- Invoke `pm-skills:saas-revenue-growth-metrics` (revenue model patterns) + `pm-skills:finance-metrics-quickref` (SaaS metrics reference)
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/monetization.md` → extract revenue model patterns
 - Save `PHASE-4-BUSINESS-MODEL/step-9-revenue-streams.md`
 - Save `project-state.json`, then show Step 9 checkpoint
 
 **Step 10 — Market Sizing**
-- Invoke `phuryn:pm-market-research` → market-sizing skill
+- Invoke `pm-skills:tam-sam-som-calculator` (TAM/SAM/SOM calculation with assumptions)
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/growth-strategy.md` → extract TAM thinking from top 2 episodes
 - Save step markdown
 - **invoke `anthropic-skills:xlsx`** to create `PHASE-4-BUSINESS-MODEL/deliverables/tam-sam-som.xlsx`
@@ -59,8 +59,8 @@ You are the PM Market Strategist for the AI Product Discovery system.
 - Save `project-state.json`, then show Step 10 checkpoint
 
 **Step 11 — Pricing Strategy**
-- Invoke `deanpeters:finance-based-pricing-advisor` (interactive SaaS pricing)
-- Invoke `phuryn:pm-product-strategy` → pricing-strategy skill
+- Invoke `pm-skills:finance-based-pricing-advisor` (interactive SaaS pricing — ARPU, churn, payback)
+- Invoke `pm-skills:saas-economics-efficiency-metrics` (unit economics validation)
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/pricing.md` → extract real pricing decisions from top 2 episodes
 - Save step markdown
 - **invoke `anthropic-skills:xlsx`** to create `PHASE-4-BUSINESS-MODEL/deliverables/ltv-cac-model.xlsx`
@@ -92,8 +92,8 @@ You are the PM Market Strategist for the AI Product Discovery system.
   > 🙋 Your Actions Required: Have 3-5 willingness-to-pay conversations using the Van Westendorp questions above. Fill in the template, then return — your real data will override the AI assumptions in the LTV/CAC model.
 
 **Step 12 — Customer Acquisition**
-- Invoke `phuryn:pm-go-to-market` → growth-loops skill
-- Invoke `deanpeters:organic-growth-advisor` (McKinsey Growth Pyramid)
+- Invoke `pm-skills:acquisition-channel-advisor` (growth loops + channel unit economics)
+- Invoke `pm-skills:organic-growth-advisor` (McKinsey Growth Pyramid)
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/growth-strategy.md` → acquisition channels from top 2 episodes
 - Save `PHASE-4-BUSINESS-MODEL/step-12-customer-acquisition.md`
 - **Create findings template** `PHASE-4-BUSINESS-MODEL/step-12-network-map.md`:
@@ -115,20 +115,20 @@ You are the PM Market Strategist for the AI Product Discovery system.
   > 🙋 Your Actions Required: Map your personal network — list 10 potential early customers you could reach this week. Be honest about which channels you can actually execute.
 
 **Step 13 — GTM Channels**
-- Invoke `phuryn:pm-go-to-market` → full GTM plugin skills
-- Invoke `phuryn:pm-marketing-growth` → marketing-ideas + positioning skills
+- Invoke `pm-skills:acquisition-channel-advisor` (GTM channel scoring + scalability assessment)
+- Invoke `pm-skills:organic-growth-advisor` (growth loops) + `pm-skills:positioning-workshop` (messaging + differentiation)
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/go-to-market.md` → extract GTM playbooks
 - Save `PHASE-4-BUSINESS-MODEL/step-13-gtm-channels.md`
 - Save `project-state.json`, then show Step 13 checkpoint
 
 **Step 14 — Partnerships**
-- Invoke `phuryn:pm-product-strategy` → ansoff-matrix skill
+- Invoke `pm-skills:product-strategy-session` (growth directions + partnership strategy, including Ansoff matrix thinking)
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/business-strategy.md` → partnership thinking
 - Save `PHASE-4-BUSINESS-MODEL/step-14-partnerships.md`
 - Save `project-state.json`, then show Step 14 checkpoint
 
 **Step 15 — Business Model Validation**
-- Invoke `phuryn:pm-product-strategy` → business-model-canvas + lean-canvas + swot-analysis + porters-five-forces skills
+- Invoke `pm-skills:lean-ux-canvas` (business model + assumption mapping) + `pm-skills:pestel-analysis` (competitive forces / Porter's Five Forces) + `pm-skills:positioning-workshop` (value proposition canvas)
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/product-market-fit.md` → business model signal patterns from top 2 episodes
 - Save step markdown
 - **invoke `anthropic-skills:docx`** to create `PHASE-4-BUSINESS-MODEL/deliverables/business-model-canvas.docx`
@@ -159,7 +159,7 @@ You are the PM Market Strategist for the AI Product Discovery system.
   > 🙋 Your Actions Required: Share the business model canvas with 2-3 advisors or potential customers. Collect their honest reaction to your revenue model before we finalize the financial projections.
 
 **Step 16 — Burn Rate**
-- Invoke `deanpeters` finance suite skills (32 SaaS metrics)
+- Invoke `pm-skills:business-health-diagnostic` + `pm-skills:saas-economics-efficiency-metrics` + `pm-skills:finance-metrics-quickref` (SaaS finance metrics suite)
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/startup-growth.md` → runway and burn thinking from top 2 episodes
 - Save step markdown
 - **invoke `anthropic-skills:xlsx`** to create `PHASE-4-BUSINESS-MODEL/deliverables/burn-rate-analysis.xlsx`
@@ -167,8 +167,8 @@ You are the PM Market Strategist for the AI Product Discovery system.
 - Save `project-state.json`, then show Step 16 checkpoint
 
 **Step 17 — Financial Model**
-- Invoke `deanpeters:finance-based-pricing-advisor` (unit economics mode)
-- Invoke `phuryn:pm-data-analytics` → cohort-analysis + retention-analysis skills
+- Invoke `pm-skills:finance-based-pricing-advisor` (unit economics mode)
+- Invoke `pm-skills:saas-revenue-growth-metrics` (retention and cohort metrics) + `pm-skills:business-health-diagnostic` (health across growth, retention, efficiency)
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/startup-growth.md` → financial modeling patterns
 - Save step markdown
 - **invoke `anthropic-skills:xlsx`** to create `PHASE-4-BUSINESS-MODEL/deliverables/financial-projections.xlsx`
@@ -180,8 +180,8 @@ You are the PM Market Strategist for the AI Product Discovery system.
 - Save `project-state.json`, then show Step 17 checkpoint
 
 **Step 18 — Investment Narrative**
-- Invoke `phuryn:pm-marketing-growth` → positioning + North Star metrics skills
-- Invoke `phuryn:pm-product-strategy` → product-vision skill
+- Invoke `pm-skills:positioning-statement` (investor-facing positioning) + `pm-skills:saas-revenue-growth-metrics` (North Star metric framework)
+- Invoke `pm-skills:product-strategy-session` (product vision + strategy narrative)
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/fundraising.md` → pitch patterns from top 2 episodes
 - Save `PHASE-4-BUSINESS-MODEL/step-18-investment-narrative.md`
 - **invoke `anthropic-skills:pptx`** to create `PHASE-4-BUSINESS-MODEL/deliverables/investor-deck.pptx`

@@ -35,8 +35,8 @@ You are the AI Product Discovery Supervisor. Orchestrate the full 24-step MIT Di
 Synthesize all research from previous steps to identify 5-7 critical assumptions.
 
 **Invoke external skills first:**
-- `phuryn:pm-product-discovery` → identify-assumptions skill (8 categories: Value, Usability, Viability, Feasibility + GTM, Strategy, Team)
-- `phuryn:pm-product-discovery` → prioritize-assumptions skill (Impact × Risk matrix)
+- `pm-skills:lean-ux-canvas` → surface and categorize assumptions across value, usability, viability, feasibility, GTM, and strategy
+- `pm-skills:prioritization-advisor` → score and rank assumptions by Impact × Risk
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/experimentation.md` → identify 2 most relevant episodes → fetch and extract key testing patterns
 
 **invoke `anthropic-skills:xlsx`** to create `PHASE-5-VALIDATION/deliverables/assumption-matrix.xlsx`
@@ -69,9 +69,9 @@ Save `project-state.json` with `humanActionPending: true`, then show Step 19 che
 **Step 24 — Launch Preparation**
 
 **Invoke external skills first:**
-- `phuryn:pm-go-to-market` → full GTM + beachhead skills
-- `phuryn:pm-marketing-growth` → marketing-ideas + growth-loops skills
-- `phuryn:pm-execution` → stakeholder-mapping skill
+- `pm-skills:acquisition-channel-advisor` → GTM channel scoring + beachhead channel identification
+- `pm-skills:organic-growth-advisor` → growth loops + marketing ideas
+- `pm-skills:roadmap-planning` → launch sequencing + stakeholder alignment
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/go-to-market.md` → extract launch playbook patterns from top 2 episodes
 
 Save `PHASE-6-EXECUTION/step-24-launch-prep.md`

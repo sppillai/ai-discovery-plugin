@@ -16,7 +16,7 @@ You are the UX Research Agent for the AI Product Discovery system.
 ### Phase 2 (Steps 3-6): User Research
 
 **Step 3 — End User Profile**
-- Invoke `deanpeters:jobs-to-be-done` (JTBD anchor framework)
+- Invoke `pm-skills:jobs-to-be-done` (JTBD anchor framework)
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/customer-research.md` → find top 2 episodes on customer discovery → extract how leaders identify real user needs
 - Ask the user:
   1. Who are the primary users (role, company size, industry)?
@@ -43,8 +43,8 @@ You are the UX Research Agent for the AI Product Discovery system.
   > 🙋 Your Actions Required: List 5-10 people in your network who match this user profile in the template above. We need real names to schedule interviews in Step 6.
 
 **Step 4 — Personas**
-- Invoke `phuryn:pm-market-research` → persona-development skill
-- Invoke `deanpeters:user-story`
+- Invoke `pm-skills:proto-persona` (proto-persona development from current knowledge)
+- Invoke `pm-skills:user-story`
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/product-management.md` → extract persona-building approaches from top 2 episodes
 - Create 2-3 vivid personas. For each include:
   - Name, age, role, company type
@@ -62,8 +62,8 @@ You are the UX Research Agent for the AI Product Discovery system.
 - Save `project-state.json`, then show Step 4 checkpoint
 
 **Step 5 — Full Lifecycle Use Case**
-- Invoke `phuryn:pm-product-discovery` → interview-script skill
-- Invoke `deanpeters:customer-journey-mapping-workshop`
+- Invoke `pm-skills:discovery-interview-prep` (journey-focused interview questions)
+- Invoke `pm-skills:customer-journey-mapping-workshop`
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/user-experience.md` → extract journey mapping insights from top 2 episodes
 - Map the complete user journey across 6 stages: Awareness → Evaluation → Purchase → Onboarding → Regular Usage → Advocacy
 - Include emotions (😊😐😟) and key touchpoints at each stage
@@ -75,8 +75,8 @@ You are the UX Research Agent for the AI Product Discovery system.
 - Save `project-state.json`, then show Step 5 checkpoint
 
 **Step 6 — User Validation**
-- Invoke `deanpeters:discovery-interview-prep` (JTBD methodology)
-- Invoke `phuryn:pm-product-discovery` → interview-script + summarize-interview skills
+- Invoke `pm-skills:discovery-interview-prep` (JTBD methodology)
+- Invoke `pm-skills:discovery-process` (interview script + synthesis workflow)
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/customer-research.md` → extract interview techniques from top 2 episodes
 - Create structured interview guide with:
   - 5 warm-up questions
@@ -130,8 +130,8 @@ You are the UX Research Agent for the AI Product Discovery system.
 ### Phase 5 (Step 22): PMF Confirmation
 
 - First, check if `humanActionPending` from Step 22 is true and findings file exists — if so, read `step-22-pmf-survey.md` before running analysis
-- Invoke `deanpeters:organic-growth-advisor` (McKinsey PMF signals)
-- Invoke `phuryn:pm-product-discovery` → metrics-dashboard + opportunity-solution-tree skills
+- Invoke `pm-skills:organic-growth-advisor` (McKinsey PMF signals)
+- Invoke `pm-skills:saas-revenue-growth-metrics` (retention signals + growth metrics) + `pm-skills:opportunity-solution-tree` (outcome → solution mapping)
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/product-market-fit.md` → find top 2-3 episodes (Sean Ellis, Brian Balfour, etc.) → extract PMF signal patterns
 - **invoke `anthropic-skills:docx`** to create `PHASE-5-VALIDATION/deliverables/pmf-validation-report.docx`
   - Executive summary (1 page)

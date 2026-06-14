@@ -144,7 +144,6 @@ The agents invoke external PM skill plugins at the right steps to enrich analysi
 
 ```bash
 claude plugin marketplace add phuryn/pm-skills
-claude plugin marketplace add deanpeters/Product-Manager-Skills
 claude plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill
 ```
 
@@ -161,7 +160,6 @@ claude plugin install /path/to/Ai-discovery-plugin
 
 # Install required skills
 claude plugin marketplace add phuryn/pm-skills
-claude plugin marketplace add deanpeters/Product-Manager-Skills
 claude plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill
 ```
 
@@ -181,8 +179,8 @@ This plugin invokes skills from the following open-source repositories. Full cre
 
 | Repo | Author | License | What it contributes |
 |------|--------|---------|---------------------|
-| [phuryn/pm-skills](https://github.com/phuryn/pm-skills) | [@phuryn](https://github.com/phuryn) | MIT | 68 modular PM skills across market research, product strategy, execution, GTM, data analytics, and more |
-| [deanpeters/Product-Manager-Skills](https://github.com/deanpeters/Product-Manager-Skills) | [Dean Peters](https://github.com/deanpeters) | CC BY-NC-SA 4.0 | 49 pedagogic PM skills including JTBD, discovery interviews, pricing advisor, growth advisor, PRD development, and epic breakdown |
+| [phuryn/pm-skills](https://github.com/phuryn/pm-skills) | [@phuryn](https://github.com/phuryn) | MIT | 49 PM skills spanning discovery, strategy, delivery, finance, AI readiness, and career — installed as `pm-skills` marketplace |
+| [deanpeters/Product-Manager-Skills](https://github.com/deanpeters/Product-Manager-Skills) | [Dean Peters](https://github.com/deanpeters) | CC BY-NC-SA 4.0 | 47 PM skills (fork of phuryn/pm-skills) with pedagogic framing; same skill set including JTBD, discovery interviews, pricing advisor, growth advisor, PRD development, and epic breakdown |
 | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | [@nextlevelbuilder](https://github.com/nextlevelbuilder) | MIT | Design system generator covering style, color palette, typography, and anti-patterns for 161 product types |
 | [ChatPRD/lennys-podcast-transcripts](https://github.com/ChatPRD/lennys-podcast-transcripts) | [ChatPRD](https://github.com/ChatPRD) | — | Indexed archive of 269 Lenny's Podcast episodes; fetched at each step as a real-world expert reference |
 

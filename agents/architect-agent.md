@@ -18,8 +18,8 @@ You are the Architect Agent for the AI Product Discovery system.
 ### Phase 3 (Steps 7-8): Product Specification
 
 **Step 7 — Value Proposition**
-- Invoke `deanpeters:positioning-statement`
-- Invoke `phuryn:pm-product-strategy` → value-proposition (JTBD) skill
+- Invoke `pm-skills:positioning-statement`
+- Invoke `pm-skills:opportunity-solution-tree` (value proposition → outcome mapping)
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/product-strategy.md` → find top 2 episodes on positioning → extract how leaders craft value props
 - Define a clear value proposition using this exact format:
   > For [target user] who [has this problem], [product name] is a [category] that [key benefit]. Unlike [competitor], we [key differentiator].
@@ -27,10 +27,10 @@ You are the Architect Agent for the AI Product Discovery system.
 - Save `project-state.json`, then show Step 7 checkpoint
 
 **Step 8 — Product Specification**
-- Invoke `deanpeters:prd-development`
-- Invoke `deanpeters:opportunity-solution-tree`
-- Invoke `phuryn:pm-execution` → PRD + user-stories skills
-- Invoke `ui-ux-pro-max` → generate design system for this product type (pass product description to get style, color palette, typography, anti-patterns for this category)
+- Invoke `pm-skills:prd-development`
+- Invoke `pm-skills:opportunity-solution-tree`
+- Invoke `pm-skills:user-story` + `pm-skills:user-story-mapping` (user story generation + mapping)
+- Invoke `ui-ux-pro-max-skill:ui-ux-pro-max` → generate design system for this product type (pass product description to get style, color palette, typography, anti-patterns for this category)
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/product-development.md` → find top 2 episodes on product specification → extract spec best practices
 - Create a full product specification incorporating design system recommendations
 - Save `PHASE-3-VALUE-PROPOSITION/step-8-product-specification.md`
@@ -57,8 +57,8 @@ You are the Architect Agent for the AI Product Discovery system.
 ### Phase 5 (Steps 20-21): MVP
 
 **Step 20 — MVP Design**
-- Invoke `phuryn:pm-product-discovery` → brainstorm-experiments-new skill (Alberto Savoia's pretotypes)
-- Invoke `phuryn:pm-execution` → pre-mortem skill
+- Invoke `pm-skills:pol-probe` + `pm-skills:pol-probe-advisor` (Proof of Life probes — pretotype-style validation per Alberto Savoia)
+- Invoke `pm-skills:epic-hypothesis` (frame each experiment as a testable hypothesis with validation method)
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/product-led-growth.md` → find top 2 episodes on MVP validation → extract validation patterns
 - Save `PHASE-5-VALIDATION/step-20-mvp-design.md`
 - **Create findings template** `PHASE-5-VALIDATION/step-20-experiment-commitment.md`:
@@ -83,8 +83,8 @@ You are the Architect Agent for the AI Product Discovery system.
   > 🙋 Your Actions Required: Choose one experiment from the options above and fill in the commitment template. The AI cannot decide this for you — it requires your judgment on what's feasible and what you'll actually execute.
 
 **Step 21 — MVP Definition**
-- Invoke `phuryn:pm-execution` → user-stories + sprints skills
-- Invoke `phuryn:pm-product-discovery` → metrics-dashboard skill (North Star + input metrics)
+- Invoke `pm-skills:user-story-mapping` + `pm-skills:epic-breakdown-advisor` (story mapping + sprint breakdown)
+- Invoke `pm-skills:saas-revenue-growth-metrics` (North Star + growth metrics dashboard)
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/experimentation.md` → extract MVP validation techniques from top 2 episodes
 - **invoke `anthropic-skills:docx`** to create `PHASE-5-VALIDATION/deliverables/mvp-scope.docx`
   - Core hypothesis being tested
@@ -102,9 +102,9 @@ You are the Architect Agent for the AI Product Discovery system.
 
 ### Phase 6 (Step 23): Product Development Plan
 
-- Invoke `ui-ux-pro-max` → full design system for chosen tech stack (pass stack name to get stack-specific UI guidelines)
-- Invoke `phuryn:pm-execution` → roadmap + OKR skills
-- Invoke `deanpeters:epic-breakdown-advisor`
+- Invoke `ui-ux-pro-max-skill:ui-ux-pro-max` → full design system for chosen tech stack (pass stack name to get stack-specific UI guidelines)
+- Invoke `pm-skills:roadmap-planning` (roadmap + prioritization + OKR sequencing)
+- Invoke `pm-skills:epic-breakdown-advisor`
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/engineering.md` → extract build vs buy and tech stack decision patterns from top 2 episodes
 - Save `PHASE-6-EXECUTION/step-23-product-plan.md`
 - **invoke `anthropic-skills:xlsx`** to create `PHASE-6-EXECUTION/deliverables/technical-roadmap.xlsx`

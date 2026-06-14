@@ -184,36 +184,35 @@ At each step, agents invoke external PM skills to enrich analysis. These require
 
 ```
 claude plugin marketplace add phuryn/pm-skills
-claude plugin marketplace add deanpeters/Product-Manager-Skills
 claude plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill
 ```
 
 | Step | External Skills to Invoke |
 |------|--------------------------|
-| 1 | `phuryn:pm-market-research` (segmentation), `phuryn:pm-go-to-market` (beachhead) |
-| 2 | `phuryn:pm-product-strategy` (startup-canvas), `deanpeters:opportunity-solution-tree` |
-| 3 | `deanpeters:jobs-to-be-done` |
-| 4 | `phuryn:pm-market-research` (persona-development), `deanpeters:user-story` |
-| 5 | `phuryn:pm-product-discovery` (interview-script), `deanpeters:customer-journey-mapping-workshop` |
-| 6 | `deanpeters:discovery-interview-prep`, `phuryn:pm-product-discovery` (interview-script, summarize-interview) |
-| 7 | `deanpeters:positioning-statement`, `phuryn:pm-product-strategy` (value-proposition) |
-| 8 | `deanpeters:prd-development`, `phuryn:pm-execution` (PRD, user-stories), `ui-ux-pro-max` |
-| 9 | `phuryn:pm-product-strategy` (monetization-strategy) |
-| 10 | `phuryn:pm-market-research` (market-sizing) |
-| 11 | `deanpeters:finance-based-pricing-advisor`, `phuryn:pm-product-strategy` (pricing-strategy) |
-| 12 | `phuryn:pm-go-to-market` (growth-loops), `deanpeters:organic-growth-advisor` |
-| 13 | `phuryn:pm-go-to-market`, `phuryn:pm-marketing-growth` |
-| 14 | `phuryn:pm-product-strategy` (ansoff-matrix) |
-| 15 | `phuryn:pm-product-strategy` (business-model-canvas, lean-canvas, swot-analysis, porters-five-forces) |
-| 16 | `deanpeters` finance suite (32 SaaS metrics) |
-| 17 | `deanpeters:finance-based-pricing-advisor`, `phuryn:pm-data-analytics` (cohort-analysis, retention-analysis) |
-| 18 | `phuryn:pm-marketing-growth` (positioning, North Star), `phuryn:pm-product-strategy` (product-vision) |
-| 19 | `phuryn:pm-product-discovery` (identify-assumptions, prioritize-assumptions) |
-| 20 | `phuryn:pm-product-discovery` (brainstorm-experiments-new), `phuryn:pm-execution` (pre-mortem) |
-| 21 | `phuryn:pm-execution` (user-stories, sprints), `phuryn:pm-product-discovery` (metrics-dashboard) |
-| 22 | `deanpeters:organic-growth-advisor`, `phuryn:pm-product-discovery` (metrics-dashboard, opportunity-solution-tree) |
-| 23 | `ui-ux-pro-max`, `phuryn:pm-execution` (roadmap, OKRs), `deanpeters:epic-breakdown-advisor` |
-| 24 | `phuryn:pm-go-to-market`, `phuryn:pm-marketing-growth`, `phuryn:pm-execution` (stakeholder-mapping) |
+| 1 | `pm-skills:tam-sam-som-calculator`, `pm-skills:pestel-analysis`, `pm-skills:acquisition-channel-advisor` |
+| 2 | `pm-skills:lean-ux-canvas`, `pm-skills:opportunity-solution-tree` |
+| 3 | `pm-skills:jobs-to-be-done` |
+| 4 | `pm-skills:proto-persona`, `pm-skills:user-story` |
+| 5 | `pm-skills:discovery-interview-prep`, `pm-skills:customer-journey-mapping-workshop` |
+| 6 | `pm-skills:discovery-interview-prep`, `pm-skills:discovery-process` |
+| 7 | `pm-skills:positioning-statement`, `pm-skills:opportunity-solution-tree` |
+| 8 | `pm-skills:prd-development`, `pm-skills:user-story`, `pm-skills:user-story-mapping`, `ui-ux-pro-max-skill:ui-ux-pro-max` |
+| 9 | `pm-skills:saas-revenue-growth-metrics`, `pm-skills:finance-metrics-quickref` |
+| 10 | `pm-skills:tam-sam-som-calculator` |
+| 11 | `pm-skills:finance-based-pricing-advisor`, `pm-skills:saas-economics-efficiency-metrics` |
+| 12 | `pm-skills:acquisition-channel-advisor`, `pm-skills:organic-growth-advisor` |
+| 13 | `pm-skills:acquisition-channel-advisor`, `pm-skills:organic-growth-advisor`, `pm-skills:positioning-workshop` |
+| 14 | `pm-skills:product-strategy-session` |
+| 15 | `pm-skills:lean-ux-canvas`, `pm-skills:pestel-analysis`, `pm-skills:positioning-workshop` |
+| 16 | `pm-skills:business-health-diagnostic`, `pm-skills:saas-economics-efficiency-metrics`, `pm-skills:finance-metrics-quickref` |
+| 17 | `pm-skills:finance-based-pricing-advisor`, `pm-skills:saas-revenue-growth-metrics`, `pm-skills:business-health-diagnostic` |
+| 18 | `pm-skills:positioning-statement`, `pm-skills:saas-revenue-growth-metrics`, `pm-skills:product-strategy-session` |
+| 19 | `pm-skills:lean-ux-canvas`, `pm-skills:prioritization-advisor` |
+| 20 | `pm-skills:pol-probe`, `pm-skills:pol-probe-advisor`, `pm-skills:epic-hypothesis` |
+| 21 | `pm-skills:user-story-mapping`, `pm-skills:epic-breakdown-advisor`, `pm-skills:saas-revenue-growth-metrics` |
+| 22 | `pm-skills:organic-growth-advisor`, `pm-skills:saas-revenue-growth-metrics`, `pm-skills:opportunity-solution-tree` |
+| 23 | `ui-ux-pro-max-skill:ui-ux-pro-max`, `pm-skills:roadmap-planning`, `pm-skills:epic-breakdown-advisor` |
+| 24 | `pm-skills:acquisition-channel-advisor`, `pm-skills:organic-growth-advisor`, `pm-skills:roadmap-planning` |
 
 ## Lenny's Podcast — Research Reference
 
