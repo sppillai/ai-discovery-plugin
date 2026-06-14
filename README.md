@@ -23,12 +23,11 @@ Claude Code is available in several surfaces — this plugin works in all of the
 | Surface | How to access | Notes |
 |---------|--------------|-------|
 | **Claude Code CLI** | `claude` in your terminal | Recommended — full output, best for long-running discovery sessions |
-| **Claude Code Desktop** | [claude.ai/download](https://claude.ai/download) (Mac & Windows) | Native app with the same CLI under the hood |
+| **Claude Code Desktop** | Download from [claude.ai](https://claude.ai) (Mac & Windows) | Native app with the same CLI under the hood |
 | **VS Code extension** | Install "Claude Code" from the VS Code marketplace | Run `/start-discovery` in the Claude Code panel inside VS Code |
-| **JetBrains extension** | Install from JetBrains Marketplace | Same as VS Code — works inside IntelliJ, WebStorm, etc. |
-| **claude.ai/code** | Browser at [claude.ai/code](https://claude.ai/code) | Web-based, no install needed — good for trying it out |
+| **JetBrains extension** | Install from JetBrains Marketplace | Works inside IntelliJ, WebStorm, PyCharm, etc. |
 
-> **Not compatible with**: OpenAI Codex, ChatGPT, GitHub Copilot, Cursor, Windsurf, or any non-Claude Code environment. Plugins are a Claude Code-specific feature.
+> **Not compatible with**: the claude.ai web chat, OpenAI Codex, ChatGPT, GitHub Copilot, Cursor, Windsurf, or any non-Claude Code environment. Plugins require the Claude Code CLI — they cannot run in a browser.
 
 ## What It Does
 
