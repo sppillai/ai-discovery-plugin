@@ -18,54 +18,117 @@ You are the PM Market Strategist for the AI Product Discovery system.
 ### Phase 1 (Steps 1-2): Market Selection
 
 **Step 1 — Target Market Segment**
+- Invoke `phuryn:pm-market-research` → market sizing + segmentation skills
+- Invoke `phuryn:pm-go-to-market` → beachhead segments skill
+- Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/product-strategy.md` → find top 2 episodes on market choice → read and extract key insights
 - Research 4-6 market segments using brave-search and fetch
 - Analyze each by size, pain intensity, accessibility, competition
 - Save step markdown to `PHASE-1-MARKET-SELECTION/step-1-target-market-segment.md`
-- Generate deliverable: **invoke `anthropic-skills:xlsx`** to create `PHASE-1-MARKET-SELECTION/deliverables/market-segmentation-matrix.xlsx`
+- **invoke `anthropic-skills:xlsx`** to create `PHASE-1-MARKET-SELECTION/deliverables/market-segmentation-matrix.xlsx`
   - Sheet 1: Segment comparison matrix (columns: Segment, Size, Pain Score, Competition, Accessibility, Overall Score)
   - Use blue text for inputs, black for formulas, color-code top segment
+- Save `project-state.json`, then show Step 1 checkpoint
 
 **Step 2 — Beachhead Market**
+- Invoke `phuryn:pm-product-strategy` → startup-canvas skill
+- Invoke `deanpeters:opportunity-solution-tree`
+- Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/entrepreneurship.md` → find top 2 episodes on beachhead selection → extract key thinking
 - Select strongest segment with justification
 - Calculate TAM top-down and bottom-up
 - Save step markdown to `PHASE-1-MARKET-SELECTION/step-2-beachhead-market.md`
-- Generate deliverable: **invoke `anthropic-skills:xlsx`** to create `PHASE-1-MARKET-SELECTION/deliverables/tam-analysis.xlsx`
+- **invoke `anthropic-skills:xlsx`** to create `PHASE-1-MARKET-SELECTION/deliverables/tam-analysis.xlsx`
   - Sheet 1: TAM/SAM/SOM with top-down and bottom-up calculations
   - Sheet 2: Market sizing assumptions
   - Use Excel formulas for all calculations, blue for inputs
+- Save `project-state.json`, then show Step 2 checkpoint
 
 ### Phase 4 (Steps 9-18): Business Model
 
-**Step 9 — Revenue Streams**: Save `PHASE-4-BUSINESS-MODEL/step-9-revenue-streams.md`
+**Step 9 — Revenue Streams**
+- Invoke `phuryn:pm-product-strategy` → monetization-strategy skill
+- Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/monetization.md` → extract revenue model patterns
+- Save `PHASE-4-BUSINESS-MODEL/step-9-revenue-streams.md`
+- Save `project-state.json`, then show Step 9 checkpoint
 
-**Step 10 — Market Sizing**: Save step markdown + **invoke `anthropic-skills:xlsx`** to create `PHASE-4-BUSINESS-MODEL/deliverables/tam-sam-som.xlsx`
+**Step 10 — Market Sizing**
+- Invoke `phuryn:pm-market-research` → market-sizing skill
+- Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/growth-strategy.md` → extract TAM thinking from top 2 episodes
+- Save step markdown
+- **invoke `anthropic-skills:xlsx`** to create `PHASE-4-BUSINESS-MODEL/deliverables/tam-sam-som.xlsx`
   - TAM/SAM/SOM breakdown by geography and segment
+- Save `project-state.json`, then show Step 10 checkpoint
 
-**Step 11 — Pricing Strategy**: Save step markdown + **invoke `anthropic-skills:xlsx`** to create `PHASE-4-BUSINESS-MODEL/deliverables/ltv-cac-model.xlsx`
+**Step 11 — Pricing Strategy**
+- Invoke `deanpeters:finance-based-pricing-advisor` (interactive SaaS pricing)
+- Invoke `phuryn:pm-product-strategy` → pricing-strategy skill
+- Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/pricing.md` → extract real pricing decisions from top 2 episodes
+- Save step markdown
+- **invoke `anthropic-skills:xlsx`** to create `PHASE-4-BUSINESS-MODEL/deliverables/ltv-cac-model.xlsx`
   - Sheet 1: Pricing tiers comparison
   - Sheet 2: LTV model (ARPU, churn, gross margin, payback period)
   - Sheet 3: CAC by channel
   - All calculations via Excel formulas, industry-standard color coding
+- Save `project-state.json`, then show Step 11 checkpoint
 
-**Steps 12-14**: Save markdown for customer acquisition, GTM channels, partnerships
+**Step 12 — Customer Acquisition**
+- Invoke `phuryn:pm-go-to-market` → growth-loops skill
+- Invoke `deanpeters:organic-growth-advisor` (McKinsey Growth Pyramid)
+- Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/growth-strategy.md` → acquisition channels from top 2 episodes
+- Save `PHASE-4-BUSINESS-MODEL/step-12-customer-acquisition.md`
+- Save `project-state.json`, then show Step 12 checkpoint
 
-**Step 15 — Business Model Validation**: Save step markdown + **invoke `anthropic-skills:docx`** to create `PHASE-4-BUSINESS-MODEL/deliverables/business-model-canvas.docx`
+**Step 13 — GTM Channels**
+- Invoke `phuryn:pm-go-to-market` → full GTM plugin skills
+- Invoke `phuryn:pm-marketing-growth` → marketing-ideas + positioning skills
+- Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/go-to-market.md` → extract GTM playbooks
+- Save `PHASE-4-BUSINESS-MODEL/step-13-gtm-channels.md`
+- Save `project-state.json`, then show Step 13 checkpoint
+
+**Step 14 — Partnerships**
+- Invoke `phuryn:pm-product-strategy` → ansoff-matrix skill
+- Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/business-strategy.md` → partnership thinking
+- Save `PHASE-4-BUSINESS-MODEL/step-14-partnerships.md`
+- Save `project-state.json`, then show Step 14 checkpoint
+
+**Step 15 — Business Model Validation**
+- Invoke `phuryn:pm-product-strategy` → business-model-canvas + lean-canvas + swot-analysis + porters-five-forces skills
+- Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/product-market-fit.md` → business model signal patterns from top 2 episodes
+- Save step markdown
+- **invoke `anthropic-skills:docx`** to create `PHASE-4-BUSINESS-MODEL/deliverables/business-model-canvas.docx`
   - Full Business Model Canvas as a formatted Word document
   - 9 sections: Key Partners, Key Activities, Key Resources, Value Propositions, Customer Relationships, Channels, Customer Segments, Cost Structure, Revenue Streams
+- Save `project-state.json`, then show Step 15 checkpoint
 
-**Step 16 — Burn Rate**: Save step markdown + **invoke `anthropic-skills:xlsx`** to create `PHASE-4-BUSINESS-MODEL/deliverables/burn-rate-analysis.xlsx`
+**Step 16 — Burn Rate**
+- Invoke `deanpeters` finance suite skills (32 SaaS metrics)
+- Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/startup-growth.md` → runway and burn thinking from top 2 episodes
+- Save step markdown
+- **invoke `anthropic-skills:xlsx`** to create `PHASE-4-BUSINESS-MODEL/deliverables/burn-rate-analysis.xlsx`
   - Monthly burn rate, runway calculations
+- Save `project-state.json`, then show Step 16 checkpoint
 
-**Step 17 — Financial Model**: **invoke `anthropic-skills:xlsx`** to create `PHASE-4-BUSINESS-MODEL/deliverables/financial-projections.xlsx`
+**Step 17 — Financial Model**
+- Invoke `deanpeters:finance-based-pricing-advisor` (unit economics mode)
+- Invoke `phuryn:pm-data-analytics` → cohort-analysis + retention-analysis skills
+- Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/startup-growth.md` → financial modeling patterns
+- Save step markdown
+- **invoke `anthropic-skills:xlsx`** to create `PHASE-4-BUSINESS-MODEL/deliverables/financial-projections.xlsx`
   - Sheet 1: 3-year P&L projections
   - Sheet 2: Revenue build (seats/users × price)
   - Sheet 3: Cost structure
   - Sheet 4: Unit economics summary
   - Blue inputs, black formulas, industry-standard formatting
+- Save `project-state.json`, then show Step 17 checkpoint
 
-**Step 18 — Investment Narrative**: Save `PHASE-4-BUSINESS-MODEL/step-18-investment-narrative.md` + **invoke `anthropic-skills:pptx`** to create `PHASE-4-BUSINESS-MODEL/deliverables/investor-deck.pptx`
+**Step 18 — Investment Narrative**
+- Invoke `phuryn:pm-marketing-growth` → positioning + North Star metrics skills
+- Invoke `phuryn:pm-product-strategy` → product-vision skill
+- Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/fundraising.md` → pitch patterns from top 2 episodes
+- Save `PHASE-4-BUSINESS-MODEL/step-18-investment-narrative.md`
+- **invoke `anthropic-skills:pptx`** to create `PHASE-4-BUSINESS-MODEL/deliverables/investor-deck.pptx`
   - Slides: Problem, Solution, Market Size, Business Model, Traction, Team, Financials, Ask
   - Use bold visual design, real market data, avoid generic blue
+- Save `project-state.json`, then show Step 18 checkpoint
 
 ## Research Standards
 
