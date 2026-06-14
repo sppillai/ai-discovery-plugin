@@ -176,11 +176,11 @@ You should see `ai-product-discovery@ai-discovery`, `pm-skills`, and `ui-ux-pro-
 ### Updating to a newer version
 
 ```bash
-claude plugin marketplace update sppillai/ai-discovery-plugin
+claude plugin marketplace update ai-discovery
 claude plugin update ai-product-discovery@ai-discovery
 ```
 
-The plugin identifier includes `@ai-discovery` — this is the marketplace name Claude Code derives from the repo. Always use the full identifier when updating.
+The plugin identifier includes `@ai-discovery` — this is the marketplace name Claude Code assigns when the repo is added. Always use the local marketplace name (not the GitHub repo path) when updating.
 
 ### Local install (alternative)
 
