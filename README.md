@@ -1,4 +1,8 @@
-# AI Product Discovery Plugin
+<img src="assets/social-card.png" alt="AI Product Discovery OS — Claude Code Plugin" width="100%"/>
+
+# AI Product Discovery OS
+
+![Version](https://img.shields.io/badge/version-1.1.0-6366F1?style=flat-square) ![License](https://img.shields.io/badge/license-MIT-22c55e?style=flat-square) ![Claude Code](https://img.shields.io/badge/Claude_Code-Plugin-A5B4FC?style=flat-square) ![Framework](https://img.shields.io/badge/MIT_DE-24_steps-94A3B8?style=flat-square)
 
 A Claude Code plugin that runs the **MIT Disciplined Entrepreneurship** 24-step validation framework for any product idea — with four AI agents doing the research, and you doing the real-world work only you can do.
 
