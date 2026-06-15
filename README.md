@@ -4,82 +4,87 @@
 
 ![Version](https://img.shields.io/badge/version-1.1.0-6366F1?style=flat-square) ![License](https://img.shields.io/badge/license-MIT-22c55e?style=flat-square) ![Claude Code](https://img.shields.io/badge/Claude_Code-Plugin-A5B4FC?style=flat-square) ![Framework](https://img.shields.io/badge/MIT_DE-24_steps-94A3B8?style=flat-square)
 
-A Claude Code plugin that runs the **MIT Disciplined Entrepreneurship** 24-step validation framework for any product idea — with four AI agents doing the research, and you doing the real-world work only you can do.
+---
 
-## About MIT Disciplined Entrepreneurship
+## The problem
 
-[Disciplined Entrepreneurship](https://entrepreneurship.mit.edu/disciplined-entrepreneurship/) was created by **Bill Aulet**, Managing Director of the [Martin Trust Center for MIT Entrepreneurship](https://entrepreneurship.mit.edu). It is a structured, 24-step framework for building successful startups — developed from decades of research and teaching at MIT and refined through thousands of entrepreneurs worldwide.
+Solo founders waste 3–6 months building products nobody wants. Not because they're bad at building — because they skip the hard questions. Who exactly is your customer? What does their life look like today? Would they actually pay for this? Most founders jump straight to building and find out the answer too late.
 
-The core insight is that entrepreneurship is not a talent you're born with — it's a discipline you can learn. The framework forces founders to answer hard questions in the right order: Who exactly is your customer? What is their life like today? Why would they pay for your solution? What's the business model? How do you get to them? Each answer builds on the last, and skipping steps is how startups waste months building things nobody wants.
+Existing AI tools make building faster. None of them make you validate first.
 
-The framework is documented in the book **[Disciplined Entrepreneurship: 24 Steps to a Successful Startup](https://www.amazon.com/Disciplined-Entrepreneurship-Steps-Successful-Startup/dp/1118692284)** (Wiley, 2013) and the companion **[Disciplined Entrepreneurship Workbook](https://www.amazon.com/Disciplined-Entrepreneurship-Workbook-Bill-Aulet/dp/1119365791)** (Wiley, 2017). Additional resources, case studies, and instructor materials are available at the [MIT Entrepreneurship website](https://entrepreneurship.mit.edu).
+## What this is
 
-> This plugin is an independent implementation of the DE framework for use with Claude Code. It is not affiliated with or endorsed by MIT or Bill Aulet. All intellectual credit for the framework belongs to Bill Aulet and the Martin Trust Center for MIT Entrepreneurship.
+A Claude Code plugin that enforces rigorous product validation before you write a single line of code. You describe your idea, four AI agents run the full **MIT Disciplined Entrepreneurship 24-step framework** — generating market research, customer personas, pricing models, financial projections, and an investor deck — and at every step you either approve the output or go do the real-world work (customer interviews, pricing conversations, PMF surveys) that only you can do.
+
+At the end you have a complete discovery report, validated assumptions, a defined MVP, and a launch plan. Built before you build anything.
+
+## Quick start
+
+```bash
+# 1. Install the plugin
+claude plugin marketplace add sppillai/ai-discovery-plugin
+claude plugin install ai-product-discovery
+
+# 2. Install required skill packs
+claude plugin marketplace add phuryn/pm-skills
+claude plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill
+
+# 3. Create a project folder and start
+mkdir my-product-idea && cd my-product-idea
+claude  # open Claude Code in this folder
+# then run: /start-discovery
+```
 
 ---
 
-## Where to Use This Plugin
+## Where to use it
 
-This plugin requires **Claude Code** — Anthropic's official AI coding tool. It does not work in OpenAI Codex, GitHub Copilot, Cursor, or any other AI assistant.
-
-Claude Code is available in several surfaces — this plugin works in all of them:
+Requires **Claude Code** — works in all Claude Code surfaces:
 
 | Surface | How to access | Notes |
 |---------|--------------|-------|
-| **Claude Code CLI** | `claude` in your terminal | Recommended — full output, best for long-running discovery sessions |
-| **Claude Desktop — Cowork** | Cowork tab in the Claude desktop app | Use "Work in a project" to point at your project folder, then type `/start-discovery` |
-| **Claude Desktop — Code** | Code tab in the Claude desktop app | Same CLI experience as the terminal, built into the desktop app |
-| **VS Code extension** | Install "Claude Code" from the VS Code marketplace | Run `/start-discovery` in the Claude Code panel inside VS Code |
-| **JetBrains extension** | Install from JetBrains Marketplace | Works inside IntelliJ, WebStorm, PyCharm, etc. |
+| **Claude Code CLI** | `claude` in your terminal | Recommended — best for long sessions |
+| **Claude Desktop — Cowork** | Cowork tab in the Claude desktop app | Use "Work in a project" to point at your folder |
+| **Claude Desktop — Code** | Code tab in the Claude desktop app | Same as the CLI, built into the app |
+| **VS Code extension** | Install "Claude Code" from VS Code marketplace | Run `/start-discovery` in the Claude panel |
+| **JetBrains extension** | Install from JetBrains Marketplace | Works in IntelliJ, WebStorm, PyCharm, etc. |
 
-> **Not compatible with**: the claude.ai web chat, OpenAI Codex, ChatGPT, GitHub Copilot, Cursor, Windsurf, or any non-Claude Code environment. Plugins require the Claude Code CLI — they cannot run in a browser.
+> **Not compatible with**: claude.ai web chat, OpenAI Codex, ChatGPT, GitHub Copilot, Cursor, or Windsurf. Plugins require the Claude Code CLI.
 
-## What It Does
+---
 
-Solo founders waste 3–6 months building products nobody wants. This plugin enforces rigorous validation before you write a single line of code. You describe your idea, four AI agents work through the full 24-step MIT DE framework, and at every step you either approve the output or go do real-world work (customer interviews, pricing conversations, PMF surveys) that the AI brings back into the analysis.
+## How it works
 
-## How to Use
+1. Run `/start-discovery` and describe your product idea in 1–2 sentences
+2. Four AI agents work through all 24 steps — generating research, spreadsheets, Word docs, and PowerPoint decks
+3. After every step you get a checkpoint: approve the output, give feedback to revise, or paste in your real-world findings
+4. At 10 steps, the AI tells you exactly what real-world action to take and waits for you to return with results
+5. All deliverables are saved to your project folder as they're created
 
-1. Create a new empty folder for your project and open it in Claude Code
-2. Run `/start-discovery` and describe your product idea in 1–2 sentences
-3. The agents run each step autonomously — generating research, spreadsheets, documents, and presentations
-4. At every step you get a checkpoint: approve the output, give feedback to revise, or paste in your real-world findings
-5. At 10 specific steps, the AI tells you exactly what real-world action to take and waits for you to come back with results before continuing
-6. All deliverables are saved directly into your project folder
+**Resuming**: open the project folder again in Claude Code — the plugin reads `project-state.json` and picks up exactly where you left off, including any pending human action.
 
-**Resuming**: open the project folder again — the plugin reads `project-state.json` and picks up where you left off, including any pending human action.
+### Steps that require your real-world input
 
-## Checkpoint System
+At these 10 steps, the AI creates a findings template and waits for you:
 
-Every step ends with a checkpoint. Most steps are fully autonomous — just type "yes" to continue.
-
-For 10 steps that require real-world work, you get a **Your Actions Required** block with specific instructions and a pre-formatted findings template to fill in:
-
-| Step | What you do | Why it matters |
-|------|-------------|----------------|
-| 3 — End User Profile | List 5–10 people you know who match the user profile | Seeds the interview pipeline |
-| 6 — User Validation | Conduct 5 customer discovery interviews with the guide the AI creates | The most important step — real signal beats AI assumption every time |
+| Step | What you do | Why it can't be skipped |
+|------|-------------|------------------------|
+| 3 — End User Profile | List 5–10 people you know who match the user profile | Seeds the real interview pipeline |
+| 6 — User Validation | Conduct 5 customer discovery interviews | The most important step — real signal beats AI assumption |
 | 11 — Pricing Strategy | Run 3–5 willingness-to-pay conversations | Grounds the LTV/CAC model in real data |
-| 12 — Customer Acquisition | Map 10 potential early customers from your network | Validates your go-to-market channel assumptions |
-| 15 — Business Model | Share the business model canvas with 2–3 advisors | Tests revenue model assumptions before financial modeling |
-| 19 — Key Assumptions | Review and rank the assumption matrix | Add what the AI missed from direct experience |
+| 12 — Customer Acquisition | Map 10 potential early customers from your network | Validates go-to-market assumptions |
+| 15 — Business Model | Share the canvas with 2–3 advisors | Tests revenue model before financial modeling |
+| 19 — Key Assumptions | Review and rank the assumption matrix | Add what the AI missed from your direct experience |
 | 20 — MVP Design | Pick one experiment and commit to a start date | The AI can't decide what you'll actually execute |
-| 22 — PMF Confirmation | Run the Sean Ellis survey with 40+ users (target: >40% "very disappointed") | The quantitative gate before building anything |
+| 22 — PMF Confirmation | Run the Sean Ellis survey with 40+ users | The quantitative gate before building anything |
 | 23 — Development Plan | Decide team structure and approve the tech stack | Gates the entire build timeline |
 | 24 — Launch Prep | Execute the launch checklist | The AI drafts everything; you pull the trigger |
 
-## Pivoting
+---
 
-When customer interviews, PMF results, or any step reveals a wrong assumption, the plugin handles pivots gracefully:
+## The 24 steps
 
-- **Minor pivot** (refine same direction) — re-runs specific steps in-place, saves old files as `-v1.md`
-- **Major pivot** (new customer, problem, or solution) — creates a `PIVOT-1/` folder with a `PIVOT-RATIONALE.md` capturing what you learned, carries over steps still valid, and restarts from the earliest invalidated step
-
-At Step 22, if the PMF score is below 40%, the Supervisor proactively asks whether to pivot the problem, solution, or segment.
-
-## The 24 Steps
-
-| Phase | Steps | What Gets Built |
+| Phase | Steps | What gets built |
 |-------|-------|-----------------|
 | **1 — Market Selection** | 1–2 | Target market segment, beachhead selection, TAM analysis |
 | **2 — User Research** | 3–6 | End user profile, personas, lifecycle map, interview guide |
@@ -88,7 +93,9 @@ At Step 22, if the PMF score is below 40%, the Supervisor proactively asks wheth
 | **5 — Validation** | 19–22 | Assumption matrix, MVP design, MVP scope, PMF confirmation |
 | **6 — Execution** | 23–24 | Development roadmap, tech architecture, launch plan |
 
-## Output Structure
+## What you get
+
+Every step produces real files in your project folder:
 
 ```
 your-project/
@@ -149,25 +156,39 @@ your-project/
     └── [same phase structure]
 ```
 
+## Pivoting
+
+When interviews, PMF results, or any step reveals a wrong assumption:
+
+- **Minor pivot** — re-runs specific steps in-place, saves old files as `-v1.md`
+- **Major pivot** — creates a `PIVOT-1/` folder, carries over steps still valid, and restarts from the earliest invalidated step with a `PIVOT-RATIONALE.md` capturing what you learned
+
+At Step 22, if the PMF score is below 40%, the Supervisor proactively asks whether to pivot the problem, solution, or segment.
+
+---
+
 ## Agents
 
 | Agent | Responsibility | Steps |
 |-------|---------------|-------|
-| **Supervisor** | Orchestrates workflow, handles Steps 19 and 24, manages pivots | All |
+| **Supervisor** | Orchestrates workflow, manages pivots, generates final report | All |
 | **PM Market Strategist** | Market research, TAM, business model, pricing | 1–2, 9–18 |
 | **UX Research Agent** | User interviews, personas, journey mapping, PMF | 3–6, 22 |
 | **Architect Agent** | Product spec, MVP definition, technical planning | 7–8, 20–21, 23 |
 
-## External Skills
+At each step, agents surface a **💬 Expert Insight** block with a real quote from a relevant [Lenny's Podcast](https://www.lennyspodcast.com) episode — attributed to the guest, applied directly to your situation.
 
-The agents invoke external PM skill plugins at the right steps to enrich analysis. Install these separately:
+## External skill packs
 
-```bash
-claude plugin marketplace add phuryn/pm-skills
-claude plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill
-```
+The agents invoke these open-source Claude Code skill packs at the right steps. Install them as part of setup:
 
-The agents also fetch relevant [Lenny's Podcast](https://www.lennyspodcast.com) transcripts at each step via the [ChatPRD transcript archive](https://github.com/ChatPRD/lennys-podcast-transcripts) to ground analysis in real expert patterns.
+| Skill pack | What it adds |
+|-----------|-------------|
+| [phuryn/pm-skills](https://github.com/phuryn/pm-skills) | 49 PM skills — discovery, strategy, pricing, finance, go-to-market |
+| [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Design system generator for 161 product types (Steps 8 and 23) |
+| [ChatPRD/lennys-podcast-transcripts](https://github.com/ChatPRD/lennys-podcast-transcripts) | 269 Lenny's Podcast transcripts, fetched live at each step |
+
+---
 
 ## Installation
 
@@ -185,7 +206,7 @@ claude plugin marketplace add phuryn/pm-skills
 claude plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill
 ```
 
-### Step 3 — Verify everything is installed
+### Step 3 — Verify
 
 ```bash
 claude plugin list
@@ -193,16 +214,16 @@ claude plugin list
 
 You should see `ai-product-discovery@ai-discovery`, `pm-skills`, and `ui-ux-pro-max-skill` all listed as enabled.
 
-### Updating to a newer version
+### Updating
 
 ```bash
 claude plugin marketplace update ai-discovery
 claude plugin update ai-product-discovery@ai-discovery
 ```
 
-The plugin identifier includes `@ai-discovery` — this is the marketplace name Claude Code assigns when the repo is added. Always use the local marketplace name (not the GitHub repo path) when updating.
+The `@ai-discovery` suffix is the marketplace name Claude Code assigns to this repo — always use it when updating.
 
-### Local install (alternative)
+### Local install
 
 ```bash
 git clone https://github.com/sppillai/ai-discovery-plugin
@@ -211,62 +232,51 @@ claude plugin install /path/to/ai-discovery-plugin
 
 ## Requirements
 
-- Claude Code with plugin support
+- Claude Code (CLI, desktop, VS Code, or JetBrains extension)
 - `anthropic-skills` for Excel, Word, and PowerPoint generation
 - Brave Search MCP for real market data (optional but strongly recommended)
 
 ---
 
+## About MIT Disciplined Entrepreneurship
+
+[Disciplined Entrepreneurship](https://entrepreneurship.mit.edu/disciplined-entrepreneurship/) was created by **Bill Aulet**, Managing Director of the [Martin Trust Center for MIT Entrepreneurship](https://entrepreneurship.mit.edu). It is a structured, 24-step framework for building successful startups — developed from decades of research and teaching at MIT and refined through thousands of entrepreneurs worldwide.
+
+The framework forces founders to answer hard questions in the right order: Who exactly is your customer? What is their life like today? Why would they pay for your solution? What's the business model? How do you get to them? Each answer builds on the last, and skipping steps is how startups waste months building things nobody wants.
+
+Documented in **[Disciplined Entrepreneurship: 24 Steps to a Successful Startup](https://www.amazon.com/Disciplined-Entrepreneurship-Steps-Successful-Startup/dp/1118692284)** (Wiley, 2013) and the **[Disciplined Entrepreneurship Workbook](https://www.amazon.com/Disciplined-Entrepreneurship-Workbook-Bill-Aulet/dp/1119365791)** (Wiley, 2017).
+
+> This plugin is an independent implementation of the DE framework. It is not affiliated with or endorsed by MIT or Bill Aulet. All intellectual credit for the framework belongs to Bill Aulet and the Martin Trust Center for MIT Entrepreneurship.
+
+---
+
 ## Attribution
 
-### External Claude Code Skill Repos
-
-This plugin invokes skills from the following open-source repositories. Full credit to their authors:
+### External Claude Code skill repos
 
 | Repo | Author | License | What it contributes |
 |------|--------|---------|---------------------|
-| [phuryn/pm-skills](https://github.com/phuryn/pm-skills) | [@phuryn](https://github.com/phuryn) | MIT | 49 PM skills spanning discovery, strategy, delivery, finance, AI readiness, and career — installed as `pm-skills` marketplace |
-| [deanpeters/Product-Manager-Skills](https://github.com/deanpeters/Product-Manager-Skills) | [Dean Peters](https://github.com/deanpeters) | CC BY-NC-SA 4.0 | 47 PM skills (fork of phuryn/pm-skills) with pedagogic framing; same skill set including JTBD, discovery interviews, pricing advisor, growth advisor, PRD development, and epic breakdown |
-| [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | [@nextlevelbuilder](https://github.com/nextlevelbuilder) | MIT | Design system generator covering style, color palette, typography, and anti-patterns for 161 product types |
-| [ChatPRD/lennys-podcast-transcripts](https://github.com/ChatPRD/lennys-podcast-transcripts) | [ChatPRD](https://github.com/ChatPRD) | — | Indexed archive of 269 Lenny's Podcast episodes; fetched at each step as a real-world expert reference |
+| [phuryn/pm-skills](https://github.com/phuryn/pm-skills) | [@phuryn](https://github.com/phuryn) | MIT | 49 PM skills spanning discovery, strategy, delivery, finance, AI readiness, and career |
+| [deanpeters/Product-Manager-Skills](https://github.com/deanpeters/Product-Manager-Skills) | [Dean Peters](https://github.com/deanpeters) | CC BY-NC-SA 4.0 | 47 PM skills (fork of phuryn/pm-skills) with pedagogic framing |
+| [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | [@nextlevelbuilder](https://github.com/nextlevelbuilder) | MIT | Design system generator for 161 product types |
+| [ChatPRD/lennys-podcast-transcripts](https://github.com/ChatPRD/lennys-podcast-transcripts) | [ChatPRD](https://github.com/ChatPRD) | — | Indexed archive of 269 Lenny's Podcast episodes |
 
 ### Lenny's Podcast
 
-The agents fetch episode transcripts from [Lenny's Podcast](https://www.lennyspodcast.com) — hosted by **Lenny Rachitsky** — at each step of the framework. The podcast is one of the most respected product and growth resources, featuring in-depth conversations with founders, PMs, and investors from companies including Airbnb, Figma, Notion, Stripe, Linear, and many others. All transcript content belongs to Lenny Rachitsky and the respective guests.
+The agents fetch episode transcripts from [Lenny's Podcast](https://www.lennyspodcast.com) — hosted by **Lenny Rachitsky** — at each step of the framework. All transcript content belongs to Lenny Rachitsky and the respective guests.
 
-### Frameworks and Methodologies Referenced in the Skills
+### Frameworks and methodologies
 
-The external skill repos draw on established product management frameworks and the work of leading practitioners. Attribution for the key methodologies used throughout this workflow:
+The external skill repos draw on the following established frameworks:
 
-**Product Strategy & Market Research**
-- **Jobs to Be Done (JTBD)** — [Clayton Christensen](https://claytonchristensen.com) (Harvard Business School), [Tony Ulwick](https://jobs-to-be-done.com) (Strategyn), and [Bob Moesta](https://therewiredgroup.com) (ReWired Group)
-- **Opportunity Solution Tree** — [Teresa Torres](https://www.producttalk.org) (Product Talk)
-- **Business Model Canvas** — [Alexander Osterwalder](https://www.strategyzer.com) and Yves Pigneur, *Business Model Generation* (Wiley, 2010)
-- **Lean Canvas** — [Ash Maurya](https://leanfoundry.com), adapted from the Business Model Canvas
-- **Ansoff Matrix** — Igor Ansoff, *Corporate Strategy* (McGraw-Hill, 1965)
-- **Porter's Five Forces** — [Michael E. Porter](https://www.isc.hbs.edu) (Harvard Business School), *Competitive Strategy* (Free Press, 1980)
+**Product strategy & market research** — Jobs to Be Done ([Clayton Christensen](https://claytonchristensen.com), [Tony Ulwick](https://jobs-to-be-done.com), [Bob Moesta](https://therewiredgroup.com)) · Opportunity Solution Tree ([Teresa Torres](https://www.producttalk.org)) · Business Model Canvas ([Alexander Osterwalder](https://www.strategyzer.com)) · Lean Canvas ([Ash Maurya](https://leanfoundry.com)) · Porter's Five Forces ([Michael E. Porter](https://www.isc.hbs.edu))
 
-**User Research & Discovery**
-- **Discovery Interview Methodology** — [Steve Blank](https://steveblank.com), *The Four Steps to the Epiphany* (2003), and [Bob Moesta](https://therewiredgroup.com)
-- **Empathy Mapping** — [Dave Gray](https://xplaner.com), XPLANE
-- **Customer Journey Mapping** — widely attributed to multiple practitioners; formalized in service design literature
+**User research & discovery** — Discovery Interview Methodology ([Steve Blank](https://steveblank.com)) · Empathy Mapping ([Dave Gray](https://xplaner.com)) · Customer Journey Mapping
 
-**Validation & Experimentation**
-- **Pretotyping** — [Alberto Savoia](https://www.pretotyping.org) (Google), *The Right It* (HarperBusiness, 2019)
-- **Product-Market Fit Survey ("40% very disappointed")** — [Sean Ellis](https://seanellis.me), founder of GrowthHackers
-- **Build–Measure–Learn loop** — [Eric Ries](https://theleanstartup.com), *The Lean Startup* (Crown Business, 2011)
+**Validation & experimentation** — Pretotyping ([Alberto Savoia](https://www.pretotyping.org)) · Product-Market Fit Survey ([Sean Ellis](https://seanellis.me)) · Build–Measure–Learn ([Eric Ries](https://theleanstartup.com))
 
-**Pricing**
-- **Van Westendorp Price Sensitivity Meter** — Peter Van Westendorp (1976), widely used in SaaS pricing research
-- **Value-Based Pricing frameworks** — [Madhavan Ramanujam](https://www.simon-kucher.com) and Georg Tacke, *Monetizing Innovation* (Wiley, 2016)
+**Pricing** — Van Westendorp Price Sensitivity Meter · Value-Based Pricing ([Madhavan Ramanujam](https://www.simon-kucher.com))
 
-**Growth & Go-to-Market**
-- **McKinsey Growth Pyramid** — McKinsey & Company
-- **Growth Loops** — [Brian Balfour](https://brianbalfour.com) (Reforge) and the Reforge growth framework
-- **North Star Metric** — [Sean Ellis](https://seanellis.me); formalized by Amplitude in *North Star Playbook*
-- **OKRs (Objectives & Key Results)** — Andy Grove (Intel), popularized by [John Doerr](https://www.whatmatters.com), *Measure What Matters* (Portfolio/Penguin, 2018)
+**Growth & go-to-market** — Growth Loops ([Brian Balfour](https://brianbalfour.com)) · North Star Metric ([Sean Ellis](https://seanellis.me)) · OKRs (Andy Grove / [John Doerr](https://www.whatmatters.com))
 
-**Execution**
-- **Pre-mortem technique** — [Gary Klein](https://www.kleinsinsights.com), *Sources of Power* (MIT Press, 1998)
-- **MoSCoW prioritization** — Dai Clegg (Dynamic Systems Development Method, 1994)
-- **Story Points & Agile Sprints** — [Ken Schwaber](https://kenschwaber.wordpress.com) and Jeff Sutherland, *Scrum: The Art of Doing Twice the Work in Half the Time* (Crown Business, 2014)
+**Execution** — Pre-mortem ([Gary Klein](https://www.kleinsinsights.com)) · MoSCoW prioritization · Agile Sprints ([Ken Schwaber](https://kenschwaber.wordpress.com))
