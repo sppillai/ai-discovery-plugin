@@ -48,18 +48,21 @@ All generated files by phase:
 
 ### Phase 2 — User Research
 - `step-3-end-user-profile.md`
+- `deliverables/current-state-process-map.xlsx` ← invoke `anthropic-skills:xlsx` (Step 3, 2 sheets: "Today's Process" with pain severity scores + "Opportunity Gaps" populated at Step 7)
 - `step-4-personas.md`
 - `deliverables/personas.docx` ← invoke `anthropic-skills:docx`
 - `step-5-lifecycle-use-case.md`
-- `deliverables/user-journey-map.xlsx` ← invoke `anthropic-skills:xlsx`
+- `deliverables/user-journey-map.xlsx` ← invoke `anthropic-skills:xlsx` (Step 5, 2 sheets: "Adoption Journey" + "Before & After (The Change)")
 - `step-6-user-validation.md`
 - `deliverables/interview-guide.docx` ← invoke `anthropic-skills:docx`
+- `deliverables/current-state-process-map-v2.xlsx` ← updated after Step 6 interviews, adds Source column (AI-assumed / Interview-confirmed / Interview-discovered) to every pain point
 
 ### Phase 3 — Value Proposition
 - `step-7-value-proposition.md`
+- `deliverables/opportunity-map.xlsx` ← invoke `anthropic-skills:xlsx` (Step 7, created before value prop is written; 2 sheets: "Pain→Opportunity" with Impact×Confidence priority ranking + "Future State Journey" showing before/after at each process step)
 - `step-8-product-specification.md`
-- `deliverables/PRD.docx` ← invoke `anthropic-skills:docx`
-- `deliverables/feature-prioritization.xlsx` ← invoke `anthropic-skills:xlsx`
+- `deliverables/PRD.docx` ← invoke `anthropic-skills:docx` (feature requirements include "Opportunity Addressed" callout; user stories cite the pain point they address)
+- `deliverables/feature-prioritization.xlsx` ← invoke `anthropic-skills:xlsx` (Sheet 1 includes Opportunity Link + Validation Status columns; features without an opportunity link are flagged "Needs validation")
 
 ### Phase 4 — Business Model
 - Steps 9-18 markdown files

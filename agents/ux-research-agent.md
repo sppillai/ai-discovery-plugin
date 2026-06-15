@@ -24,6 +24,10 @@ You are the UX Research Agent for the AI Product Discovery system.
   3. How do they currently solve the problem?
   4. What does their typical day look like?
   5. What metrics matter to them professionally?
+- **Map the current state process**: Ask "Walk me through what [user type] does TODAY when they need to [the job you identified above]. Step by step — I'll build a map." Construct the map from their description, filling in pain points and tool workarounds autonomously from the context gathered in questions 1-4.
+- **invoke `anthropic-skills:xlsx`** to create `PHASE-2-USER-RESEARCH/deliverables/current-state-process-map.xlsx`
+  - **Sheet 1 "Today's Process"**: Columns = Step #, User Action, Tool/Method Used, Pain Point, Pain Severity (1-5), Estimated Time Cost, Emotional State (😞😐😊). Color-code Pain Severity: Red=5, Orange=4, Yellow=3, Green=1-2. Add a summary row: total steps, count of friction points (severity ≥3), estimated total time wasted per occurrence.
+  - **Sheet 2 "Opportunity Gaps"**: Column headers only, rows blank for now — populated at Step 7 after the opportunity map is created. Columns = Process Step, Current Pain, Opportunity Statement, Effort to Fix (1-5), User Impact (1-5).
 - Save `PHASE-2-USER-RESEARCH/step-3-end-user-profile.md`
 - **Create findings template** `PHASE-2-USER-RESEARCH/step-3-network-map.md`:
   ```
@@ -38,6 +42,11 @@ You are the UX Research Agent for the AI Product Discovery system.
   
   ## Notes on Access
   (Any cold outreach you're considering? Warm intros?)
+
+  ## Does the Process Map Match Reality?
+  Look at the current-state-process-map.xlsx I created. Does it accurately describe
+  what these users go through today? What steps are wrong or missing?
+  (Edit the xlsx directly, or describe the corrections here when you return.)
   ```
 - Save `project-state.json` with `humanActionPending: true`, `humanActionFile: "PHASE-2-USER-RESEARCH/step-3-network-map.md"`, then show Step 3 checkpoint with **Format B**:
   > 🙋 Your Actions Required: List 5-10 people in your network who match this user profile in the template above. We need real names to schedule interviews in Step 6.
@@ -69,10 +78,9 @@ You are the UX Research Agent for the AI Product Discovery system.
 - Include emotions (😊😐😟) and key touchpoints at each stage
 - Save `PHASE-2-USER-RESEARCH/step-5-lifecycle-use-case.md`
 - **invoke `anthropic-skills:xlsx`** to create `PHASE-2-USER-RESEARCH/deliverables/user-journey-map.xlsx`
-  - Sheet 1: Journey map with stages as columns, rows for: Actions, Thoughts, Emotions, Pain Points, Opportunities
-  - Color code cells by emotion (green=positive, yellow=neutral, red=pain)
-  - Use Excel formulas to count pain points and opportunities per stage
-- Save `project-state.json`, then show Step 5 checkpoint
+  - **Sheet 1 "Adoption Journey"**: Journey map with stages as columns (Awareness, Evaluation, Purchase, Onboarding, Regular Usage, Advocacy), rows for: Actions, Thoughts, Emotions, Pain Points, Opportunities. Color code cells by emotion (green=positive, yellow=neutral, red=pain). Use Excel formulas to count pain points and opportunities per stage.
+  - **Sheet 2 "Before & After (The Change)"**: Load the process steps from `PHASE-2-USER-RESEARCH/deliverables/current-state-process-map.xlsx` Sheet 1. Columns = Current Process Step | User Action Today | Pain Point Today | What the Product Changes | User Action After | Emotion Change (😞→😊) | Estimated Time Saved. Color-code: the "Today" columns in red/orange tones, the "After" columns in green. This sheet is the clearest articulation of the value the product delivers — it shows the before/after transformation at each step of the user's real process.
+- Save `project-state.json`, then show Step 5 checkpoint with the additional question: *"Does this Before & After sheet capture the transformation your product enables? Are there steps in the current process that are wrong or missing?"*
 
 **Step 6 — User Validation**
 - Invoke `pm-skills:discovery-interview-prep` (JTBD methodology)
@@ -125,7 +133,9 @@ You are the UX Research Agent for the AI Product Discovery system.
 - Save `project-state.json` with `humanActionPending: true`, `humanActionFile: "PHASE-2-USER-RESEARCH/step-6-interview-findings.md"`, then show Step 6 checkpoint with **Format B**:
   > 🙋 Your Actions Required: Conduct 5 customer discovery interviews using the guide and Word doc above. Fill in the findings template, then return here. This is the most important real-world step in the whole process — don't skip it.
 
-**At the start of Step 7**: Read `step-6-interview-findings.md` and incorporate real customer quotes and validated pain points into the value proposition work before starting.
+**When interview findings are returned (before routing to Step 7)**:
+1. Read `step-6-interview-findings.md` — extract all confirmed pain points, denied assumptions, and new discoveries
+2. **Update the current state process map with real data**: Re-read `PHASE-2-USER-RESEARCH/deliverables/current-state-process-map.xlsx`. For each pain point row: update the severity based on how many of 5 interviewees confirmed it, add any new pain points discovered in interviews that weren't in the original map, and add a "Source" column with value "AI-assumed", "Interview-confirmed", or "Interview-discovered". Save the updated file as `PHASE-2-USER-RESEARCH/deliverables/current-state-process-map-v2.xlsx` — keep the original file unchanged for comparison. This updated map becomes the authoritative input for the opportunity analysis at Step 7.
 
 ### Phase 5 (Step 22): PMF Confirmation
 

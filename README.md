@@ -2,7 +2,7 @@
 
 # AI Product Discovery OS
 
-![Version](https://img.shields.io/badge/version-1.1.0-6366F1?style=flat-square) ![License](https://img.shields.io/badge/license-MIT-22c55e?style=flat-square) ![Claude Code](https://img.shields.io/badge/Claude_Code-Plugin-A5B4FC?style=flat-square) ![Framework](https://img.shields.io/badge/MIT_DE-24_steps-94A3B8?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.2.0-6366F1?style=flat-square) ![License](https://img.shields.io/badge/license-MIT-22c55e?style=flat-square) ![Claude Code](https://img.shields.io/badge/Claude_Code-Plugin-A5B4FC?style=flat-square) ![Framework](https://img.shields.io/badge/MIT_DE-24_steps-94A3B8?style=flat-square)
 
 ---
 
@@ -93,6 +93,24 @@ At these 10 steps, the AI creates a findings template and waits for you:
 | **5 — Validation** | 19–22 | Assumption matrix, MVP design, MVP scope, PMF confirmation |
 | **6 — Execution** | 23–24 | Development roadmap, tech architecture, launch plan |
 
+## What we added to the framework
+
+The MIT DE framework tells you **what** to validate in the right order. What it doesn't enforce is the connective tissue between user pain and the features you commit to building. Without that thread, value propositions become generic, feature lists are driven by gut feel, and no one can answer "why are we building this?" when the PRD is written.
+
+This plugin adds a structured pain-to-feature chain across Steps 3, 5, 6, 7, and 8:
+
+| Step | What's added | Why it matters |
+|------|-------------|----------------|
+| **3 — End User Profile** | Current state process map — a step-by-step map of what the user does TODAY, with pain severity (1–5) and emotional state at each step | Creates the "before picture" that everything downstream anchors to |
+| **5 — Lifecycle Use Case** | Before & After transformation sheet added to the journey map Excel | Makes the value the product delivers concrete: each step of today's process mapped against what changes with the product |
+| **6 — User Validation** | Interview findings loop back to update the process map — pain severity is re-scored based on real confirmation rate, new pains are added, every row marked as AI-assumed or interview-confirmed | Replaces AI assumptions with real evidence before the value prop is written |
+| **7 — Value Proposition** | Opportunity map built from the top-severity pain points before the value prop is drafted — each pain becomes an opportunity with Impact × Confidence priority score | Value prop is written from the highest-ranked opportunity, not generic benefit language |
+| **8 — Product Specification** | Every feature in the PRD links to a row in the opportunity map — features without a link are flagged "Needs validation" | Every feature can answer: which specific pain does this solve, how severe is it, and what process step does it change |
+
+The result is a PRD where features are not invented — they are derived from real user pain, validated by interviews, and prioritised by opportunity impact.
+
+---
+
 ## What you get
 
 Every step produces real files in your project folder:
@@ -112,13 +130,16 @@ your-project/
 │   ├── step-3-network-map.md          ← your findings template
 │   ├── step-6-interview-findings.md   ← your findings template
 │   └── deliverables/
+│       ├── current-state-process-map.xlsx    ← today's process with pain severity
+│       ├── current-state-process-map-v2.xlsx ← updated after interviews
 │       ├── personas.docx
-│       ├── user-journey-map.xlsx
+│       ├── user-journey-map.xlsx             ← adoption journey + before/after
 │       └── interview-guide.docx
 ├── PHASE-3-VALUE-PROPOSITION/
 │   └── deliverables/
+│       ├── opportunity-map.xlsx       ← pain→opportunity with priority scores
 │       ├── PRD.docx
-│       └── feature-prioritization.xlsx
+│       └── feature-prioritization.xlsx       ← features linked to opportunities
 ├── PHASE-4-BUSINESS-MODEL/
 │   ├── step-11-pricing-conversations.md  ← your findings template
 │   ├── step-12-network-map.md            ← your findings template
