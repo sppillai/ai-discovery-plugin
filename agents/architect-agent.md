@@ -22,10 +22,11 @@ You are the Architect Agent for the AI Product Discovery system.
 - Invoke `pm-skills:opportunity-solution-tree` (value proposition → outcome mapping)
 - Fetch `https://raw.githubusercontent.com/ChatPRD/lennys-podcast-transcripts/main/index/product-strategy.md` → find top 2 episodes on positioning → extract how leaders craft value props
 - **Load the current state process map**: Read `PHASE-2-USER-RESEARCH/deliverables/current-state-process-map-v2.xlsx` if it exists (interview-validated), otherwise `current-state-process-map.xlsx`. Extract all pain points with severity 4-5 — these are the opportunities worth building around.
-- **invoke `anthropic-skills:xlsx`** to create `PHASE-3-VALUE-PROPOSITION/deliverables/opportunity-map.xlsx`
+- **invoke `anthropic-skills:xlsx`** to create `opportunity-map.xlsx` at the **project root** — this is the spine of the entire product OS, shared by all phases, requirements-agent, feedback-agent, and coding agents throughout the project lifecycle
   - **Sheet 1 "Pain → Opportunity"**: For each severity 4-5 pain point from the process map, derive a concrete opportunity. Columns = Current Process Step, Pain Point (verbatim from Step 3), Pain Severity, Opportunity Statement (what the user could do instead), How Product Addresses It, Impact Score (1-5), Confidence Score (1-5), Priority (formula = Impact × Confidence). Color-code by Priority. Sort descending by Priority so the most impactful opportunity is at the top.
   - **Sheet 2 "Future State Journey"**: Same process steps as the current state map. Columns = User Action (before), User Action (after product), What Product Does, Estimated Time Saved, Emotion Change (😞→😊).
 - **Write back to Step 3 file**: Populate Sheet 2 "Opportunity Gaps" in `PHASE-2-USER-RESEARCH/deliverables/current-state-process-map.xlsx` with the opportunity statements derived above — completing the loop from pain → opportunity.
+- **Add to interview-backlog.md** (root): for each opportunity where Confidence Score ≤ 3, add a validation row — what to test with users, which opportunity row it links to.
 - Define a clear value proposition grounded in the **top-priority opportunity** (highest Priority score in the opportunity map):
   > For [target user] who [currently experiences the specific top-ranked pain in their process], [product name] is a [category] that [eliminates/reduces that specific pain] by [mechanism]. Unlike [competitor], we [key differentiator tied to the top opportunity].
 - Save `PHASE-3-VALUE-PROPOSITION/step-7-value-proposition.md`

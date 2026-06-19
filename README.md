@@ -2,7 +2,7 @@
 
 # AI Product Discovery OS
 
-![Version](https://img.shields.io/badge/version-1.2.0-6366F1?style=flat-square) ![License](https://img.shields.io/badge/license-MIT-22c55e?style=flat-square) ![Claude Code](https://img.shields.io/badge/Claude_Code-Plugin-A5B4FC?style=flat-square) ![Framework](https://img.shields.io/badge/MIT_DE-24_steps-94A3B8?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.3.0-6366F1?style=flat-square) ![License](https://img.shields.io/badge/license-MIT-22c55e?style=flat-square) ![Claude Code](https://img.shields.io/badge/Claude_Code-Plugin-A5B4FC?style=flat-square) ![Framework](https://img.shields.io/badge/MIT_DE-24_steps-94A3B8?style=flat-square)
 
 ---
 
@@ -14,9 +14,11 @@ Existing AI tools make building faster. None of them make you validate first.
 
 ## What this is
 
-A Claude Code plugin that enforces rigorous product validation before you write a single line of code. You describe your idea, four AI agents run the full **MIT Disciplined Entrepreneurship 24-step framework** — generating market research, customer personas, pricing models, financial projections, and an investor deck — and at every step you either approve the output or go do the real-world work (customer interviews, pricing conversations, PMF surveys) that only you can do.
+A Claude Code plugin that runs the full product lifecycle — from first idea through discovery, design, code, launch, and continuous feedback — all in one git repository, with AI agents at every phase.
 
-At the end you have a complete discovery report, validated assumptions, a defined MVP, and a launch plan. Built before you build anything.
+You describe your idea. Six AI agents take it through the full **MIT Disciplined Entrepreneurship 24-step framework**, then translate the validated opportunity map into a complete Minimum Usable Product design, HTML mockups, machine-readable requirements, and agent-executable epics. Coding agents build it. Feedback agents synthesise what users say and feed it back into the opportunity map. The cycle continues.
+
+Everything — discovery, design specs, source code, tests, user feedback, and the evolving roadmap — lives in one folder, checked into git, with a shared opportunity map as the spine that connects every phase.
 
 ## Quick start
 
@@ -82,13 +84,23 @@ At these 10 steps, the AI creates a findings template and waits for you:
 
 ---
 
-## The 24 steps
+## Product lifecycle phases
+
+| Version | Phase | What happens |
+|---------|-------|-------------|
+| **v0.1** | Discovery | MIT DE 24-step framework — market research, user interviews, opportunity map, business model, PMF validation |
+| **v0.2** | MUP Design | PRD.md, design system, screen specs, HTML clickthrough mockups, user testing, epic breakdown |
+| **v1.0-alpha** | Build | Coding agents pick up epics and build; you review and give instructions |
+| **v1.0** | Launch | Beta users, feedback capture live, PMF survey |
+| **v1.1+** | Growth | Feedback synthesis updates opportunity map; new priorities emerge; cycle continues |
+
+### The 24 discovery steps (v0.1)
 
 | Phase | Steps | What gets built |
 |-------|-------|-----------------|
 | **1 — Market Selection** | 1–2 | Target market segment, beachhead selection, TAM analysis |
-| **2 — User Research** | 3–6 | End user profile, personas, lifecycle map, interview guide |
-| **3 — Value Proposition** | 7–8 | Value prop, full PRD, feature prioritization matrix |
+| **2 — User Research** | 3–6 | End user profile, current state process map, personas, lifecycle + before/after map, interview guide |
+| **3 — Value Proposition** | 7–8 | Opportunity map (root), value prop grounded in top opportunity, full PRD, feature prioritization |
 | **4 — Business Model** | 9–18 | Revenue streams, pricing, LTV/CAC, GTM channels, financial model, investor deck |
 | **5 — Validation** | 19–22 | Assumption matrix, MVP design, MVP scope, PMF confirmation |
 | **6 — Execution** | 23–24 | Development roadmap, tech architecture, launch plan |
@@ -113,20 +125,26 @@ The result is a PRD where features are not invented — they are derived from re
 
 ## What you get
 
-Every step produces real files in your project folder:
+Every phase produces real files. The full project folder across the lifecycle:
 
 ```
-your-project/
-├── project-state.json
+your-product/
+│
+│  ── Root: project spine ──────────────────────────────────────────
+├── CLAUDE.md                          ← phase gates, agent routing, current version
+├── ROADMAP.md                         ← versioned phases v0.1 → v1.1+
+├── opportunity-map.xlsx               ← the spine: pain→opportunity, updated every phase
+├── interview-backlog.md               ← continuous validation queue across all phases
+├── inbox.md                           ← mid-session idea capture
 ├── IDEA.md
+├── project-state.json
+│
+│  ── v0.1 Discovery: MIT DE 24 steps ─────────────────────────────
 ├── PHASE-1-MARKET-SELECTION/
-│   ├── step-1-target-market-segment.md
-│   ├── step-2-beachhead-market.md
 │   └── deliverables/
 │       ├── market-segmentation-matrix.xlsx
 │       └── tam-analysis.xlsx
 ├── PHASE-2-USER-RESEARCH/
-│   ├── step-3-end-user-profile.md
 │   ├── step-3-network-map.md          ← your findings template
 │   ├── step-6-interview-findings.md   ← your findings template
 │   └── deliverables/
@@ -137,13 +155,9 @@ your-project/
 │       └── interview-guide.docx
 ├── PHASE-3-VALUE-PROPOSITION/
 │   └── deliverables/
-│       ├── opportunity-map.xlsx       ← pain→opportunity with priority scores
-│       ├── PRD.docx
-│       └── feature-prioritization.xlsx       ← features linked to opportunities
+│       ├── PRD-seed.docx              ← seeds requirements/PRD.md
+│       └── feature-prioritization.xlsx
 ├── PHASE-4-BUSINESS-MODEL/
-│   ├── step-11-pricing-conversations.md  ← your findings template
-│   ├── step-12-network-map.md            ← your findings template
-│   ├── step-15-advisor-feedback.md       ← your findings template
 │   └── deliverables/
 │       ├── tam-sam-som.xlsx
 │       ├── ltv-cac-model.xlsx
@@ -152,16 +166,11 @@ your-project/
 │       ├── financial-projections.xlsx
 │       └── investor-deck.pptx
 ├── PHASE-5-VALIDATION/
-│   ├── step-20-experiment-commitment.md  ← your findings template
-│   ├── step-22-pmf-survey.md             ← your findings template
 │   └── deliverables/
 │       ├── assumption-matrix.xlsx
 │       ├── mvp-scope.docx
-│       ├── mvp-prioritization.xlsx
 │       └── pmf-validation-report.docx
 ├── PHASE-6-EXECUTION/
-│   ├── step-23-build-decisions.md    ← your findings template
-│   ├── step-24-launch-log.md         ← your findings template
 │   └── deliverables/
 │       ├── technical-roadmap.xlsx
 │       ├── product-architecture-deck.pptx
@@ -171,10 +180,48 @@ your-project/
 │   ├── executive-summary-deck.pptx
 │   ├── complete-discovery-report.docx
 │   └── next-steps.md
-└── PIVOT-1/                          ← created if you pivot
-    ├── PIVOT-RATIONALE.md
-    ├── project-state.json
-    └── [same phase structure]
+│
+│  ── v0.2 MUP Design ─────────────────────────────────────────────
+├── requirements/
+│   ├── CLAUDE.md                      ← gate status + coding agent instructions
+│   ├── PRD.md                         ← machine-readable, derived from opportunity-map.xlsx
+│   ├── design/
+│   │   ├── design-system.md
+│   │   ├── screens/                   ← one .md per screen, full annotated spec
+│   │   ├── mockups/                   ← HTML clickthrough files, self-contained
+│   │   └── user-testing/              ← session notes + synthesis
+│   └── epics/
+│       └── epic-001-[name]/
+│           ├── spec.md                ← what to build + opportunity row addressed
+│           ├── acceptance-criteria.md
+│           ├── design-ref.md          ← exact screen(s) to implement
+│           └── status.md              ← not-started / in-progress / in-review / done
+│
+│  ── v1.0-alpha Build ────────────────────────────────────────────
+├── src/
+│   └── CLAUDE.md                      ← stack, conventions, do-not rules
+│
+│  ── v1.0-alpha Tests ────────────────────────────────────────────
+├── tests/
+│   ├── CLAUDE.md
+│   ├── unit/
+│   ├── integration/
+│   ├── e2e/
+│   └── quality-reports/
+│
+│  ── v1.0+ Feedback ─────────────────────────────────────────────
+├── feedback/
+│   ├── CLAUDE.md                      ← auto-update rules
+│   ├── sessions/                      ← typeform, usability studies, interviews
+│   ├── logs/                          ← usage signals, analytics
+│   ├── synthesis/                     ← agent-generated themes
+│   └── decisions/                     ← items awaiting human review
+│
+│  ── Releases ────────────────────────────────────────────────────
+└── releases/
+    └── v1.0/
+        ├── release-notes.md
+        └── retrospective.md
 ```
 
 ## Pivoting
@@ -190,14 +237,16 @@ At Step 22, if the PMF score is below 40%, the Supervisor proactively asks wheth
 
 ## Agents
 
-| Agent | Responsibility | Steps |
-|-------|---------------|-------|
-| **Supervisor** | Orchestrates workflow, manages pivots, generates final report | All |
-| **PM Market Strategist** | Market research, TAM, business model, pricing | 1–2, 9–18 |
-| **UX Research Agent** | User interviews, personas, journey mapping, PMF | 3–6, 22 |
-| **Architect Agent** | Product spec, MVP definition, technical planning | 7–8, 20–21, 23 |
+| Agent | Phase | Responsibility |
+|-------|-------|---------------|
+| **Supervisor** | v0.1 | Orchestrates all 24 discovery steps, manages pivots, generates final report |
+| **PM Market Strategist** | v0.1 | Market research, TAM, business model, pricing (Steps 1–2, 9–18) |
+| **UX Research Agent** | v0.1 | User interviews, personas, journey mapping, PMF (Steps 3–6, 22) |
+| **Architect Agent** | v0.1 | Value prop, opportunity map, product spec, MVP planning (Steps 7–8, 20–21, 23) |
+| **Requirements Agent** | v0.2 | PRD.md, design system, screen specs, HTML mockups, user testing, epic breakdown |
+| **Feedback Agent** | v1.0+ | Synthesises user feedback, updates opportunity map, flags pivots, updates roadmap |
 
-At each step, agents surface a **💬 Expert Insight** block with a real quote from a relevant [Lenny's Podcast](https://www.lennyspodcast.com) episode — attributed to the guest, applied directly to your situation.
+At each step, discovery agents surface a **💬 Expert Insight** block with a real quote from a relevant [Lenny's Podcast](https://www.lennyspodcast.com) episode — attributed to the guest, applied directly to your situation.
 
 ## External skill packs
 

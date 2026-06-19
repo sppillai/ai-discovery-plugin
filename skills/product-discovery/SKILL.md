@@ -23,10 +23,16 @@ When `project-state.json` exists:
 
 Ask: *"What's your product idea? (1-2 sentences)"*
 
-Create folder structure:
+Create the full project OS structure:
+
 ```
-project-state.json
+CLAUDE.md                               ← root: phase gates, agent routing, version
+ROADMAP.md                              ← living roadmap with versioned phases
+interview-backlog.md                    ← continuous validation queue, add from any phase
+inbox.md                                ← quick capture for mid-session ideas
 IDEA.md
+project-state.json
+
 PHASE-1-MARKET-SELECTION/deliverables/
 PHASE-2-USER-RESEARCH/deliverables/
 PHASE-3-VALUE-PROPOSITION/deliverables/
@@ -34,13 +40,197 @@ PHASE-4-BUSINESS-MODEL/deliverables/
 PHASE-5-VALIDATION/deliverables/
 PHASE-6-EXECUTION/deliverables/
 DELIVERABLES-SUMMARY/
+
+requirements/
+  CLAUDE.md
+src/
+  CLAUDE.md
+tests/
+  CLAUDE.md
+  unit/ integration/ e2e/ quality-reports/
+feedback/
+  CLAUDE.md
+  sessions/ logs/ synthesis/ decisions/
+releases/
+```
+
+`opportunity-map.xlsx` is NOT created here — it is created at the project root at Step 7 and becomes the spine shared across all phases from that point forward.
+
+### Root file content
+
+**`CLAUDE.md`** (root):
+```markdown
+# [Product Name]
+
+## Current Version: v0.1 — Discovery
+
+## Phase Gates
+| Version | Phase | Gate Condition |
+|---------|-------|---------------|
+| v0.1 | Discovery | Beachhead selected, 5+ interviews done, opportunity map validated |
+| v0.2 | MUP Design | PRD.md done, all screens designed, HTML mockups built, 3+ user-testing sessions |
+| v1.0-alpha | Build | All epics in requirements/epics/ marked done |
+| v1.0 | Launch | Beta users onboarded, feedback capture live, PMF survey run |
+| v1.1+ | Growth | Continuous — driven by opportunity-map.xlsx and feedback |
+
+## Agent Routing
+- Discovery (v0.1) → supervisor-agent, reads project-state.json
+- MUP Design + Requirements (v0.2) → requirements-agent, reads requirements/CLAUDE.md
+- Coding (v1.0-alpha) → read requirements/CLAUDE.md, pick up epic from requirements/epics/
+- Feedback synthesis (v1.0+) → feedback-agent, reads feedback/CLAUDE.md
+
+## Key Files
+- `opportunity-map.xlsx` — source of truth for all features and priorities (created at Step 7)
+- `ROADMAP.md` — phase milestones and current status
+- `interview-backlog.md` — add to this from any phase, any agent, any time
+- `inbox.md` — new ideas captured mid-session; agent routes them to opportunity map or backlog
+```
+
+**`ROADMAP.md`**:
+```markdown
+# Roadmap
+
+## v0.1 — Discovery
+**Status:** In Progress
+
+- [ ] Beachhead market selected (Steps 1–2)
+- [ ] 5+ user interviews completed (Steps 3–6)
+- [ ] Opportunity map built and validated (Step 7)
+- [ ] Business model stress-tested (Steps 9–18)
+- [ ] Key assumptions tested (Steps 19–22)
+
+## v0.2 — MUP Design
+**Status:** Not Started
+
+- [ ] PRD.md complete (derived from opportunity-map.xlsx)
+- [ ] Design system defined
+- [ ] All screens designed and specced
+- [ ] HTML mockups built
+- [ ] Clickthrough user testing: 3+ sessions done
+- [ ] Design synthesis reviewed, opportunity map updated
+
+## v1.0-alpha — Build
+**Status:** Not Started
+
+← Epics populated here by requirements-agent after PRD is approved
+
+## v1.0 — Launch
+**Status:** Not Started
+
+- [ ] Beta users onboarded
+- [ ] Feedback capture live (typeform / usability / interview)
+- [ ] PMF survey run (target: >40% very disappointed)
+
+## v1.1+ — Growth
+**Status:** Not Started
+
+← Populated from opportunity-map.xlsx as feedback comes in
+```
+
+**`interview-backlog.md`**:
+```markdown
+# Interview & Validation Backlog
+
+Add to this from any phase. When running an interview or usability session,
+the agent generates the guide from open items relevant to that user type.
+
+| # | What to validate | Source | Phase | Opportunity row | Status |
+|---|-----------------|--------|-------|-----------------|--------|
+|   |                 |        |       |                 | Open   |
+```
+
+**`inbox.md`**:
+```markdown
+# Ideas Inbox
+
+Drop new ideas here mid-session — during code review, user conversation, or discovery.
+The requirements-agent or feedback-agent processes this: adds to opportunity-map.xlsx,
+flags items needing user validation, and adds those to interview-backlog.md.
+
+---
+```
+
+**`requirements/CLAUDE.md`**:
+```markdown
+# Requirements — v0.2 MUP Design
+
+**Gate Status:** Not yet open — discovery (v0.1) must complete first.
+
+## For Coding Agents (once gate opens)
+1. Read PRD.md for full product context and scope
+2. Pick one epic from epics/ where status.md = "not-started"
+3. Read the epic's design-ref.md → find the screen spec in design/screens/
+4. Read acceptance-criteria.md before writing any code
+5. Update status.md: "in-progress" when starting, "in-review" when done
+6. Never build outside an active epic — new ideas go in ../inbox.md
+```
+
+**`src/CLAUDE.md`**:
+```markdown
+# Source Code — v1.0-alpha
+
+**Gate Status:** Not yet open — requirements/CLAUDE.md gate must be open first.
+
+## Requirements Reference
+- PRD: ../requirements/PRD.md
+- Active epics: ../requirements/epics/
+- Design specs: ../requirements/design/screens/
+- HTML mockups: ../requirements/design/mockups/
+
+## Rules
+- Never build a feature not covered by an active epic
+- New ideas go in ../inbox.md — do not implement inline
+- Run tests in ../tests/ before marking any epic "in-review"
+- Every non-obvious decision: comment starting with WHY:
+```
+
+**`tests/CLAUDE.md`**:
+```markdown
+# Tests — v1.0-alpha
+
+Unit in unit/, integration in integration/, end-to-end in e2e/.
+Quality reports: quality-reports/YYYY-MM-DD.md after each run.
+
+Reference ../requirements/epics/[epic]/acceptance-criteria.md before writing tests.
+```
+
+**`feedback/CLAUDE.md`**:
+```markdown
+# Feedback — v1.0+
+
+**Gate Status:** Not yet open — product must be launched first.
+
+## Feedback Sources
+- sessions/ — typeform exports, usability study notes, interview transcripts
+- logs/ — usage signals, analytics exports
+
+## Auto-Update Rules (applied during synthesis)
+- 3+ users independently surface the same pain → auto-append to ../opportunity-map.xlsx
+  at "Medium" confidence, flag in synthesis doc for human review
+- 1-2 users mention a new pain → add to ../interview-backlog.md only, do not update opportunity map
+- Pattern contradicts a core assumption → recommend which steps to re-run, flag as potential pivot
+
+## Processing New Feedback
+1. Read all unprocessed files in sessions/ and logs/
+2. Generate synthesis/YYYY-MM-DD.md
+3. Apply auto-update rules to ../opportunity-map.xlsx
+4. Create decisions/YYYY-MM-DD-for-review.md if human input is needed
+5. Update ../interview-backlog.md with new validation questions
+6. Update ../ROADMAP.md Growth section if new priorities emerge
 ```
 
 ## Deliverables Map
 
 All generated files by phase:
 
-### Phase 1 — Market Selection
+### Root — Project OS Files (created at project start)
+- `CLAUDE.md` ← phase gates + agent routing
+- `ROADMAP.md` ← versioned phase milestones
+- `interview-backlog.md` ← continuous validation queue
+- `inbox.md` ← quick capture
+- `opportunity-map.xlsx` ← **created at Step 7**, lives at root, spine of entire project
+
+### Phase 1 — Market Selection (v0.1 Discovery)
 - `step-1-target-market-segment.md`
 - `deliverables/market-segmentation-matrix.xlsx` ← invoke `anthropic-skills:xlsx`
 - `step-2-beachhead-market.md`
@@ -57,9 +247,9 @@ All generated files by phase:
 - `deliverables/interview-guide.docx` ← invoke `anthropic-skills:docx`
 - `deliverables/current-state-process-map-v2.xlsx` ← updated after Step 6 interviews, adds Source column (AI-assumed / Interview-confirmed / Interview-discovered) to every pain point
 
-### Phase 3 — Value Proposition
+### Phase 3 — Value Proposition (v0.1 Discovery)
 - `step-7-value-proposition.md`
-- `deliverables/opportunity-map.xlsx` ← invoke `anthropic-skills:xlsx` (Step 7, created before value prop is written; 2 sheets: "Pain→Opportunity" with Impact×Confidence priority ranking + "Future State Journey" showing before/after at each process step)
+- **`../opportunity-map.xlsx`** ← invoke `anthropic-skills:xlsx` at project root (Step 7, 2 sheets: "Pain→Opportunity" ranked by Impact×Confidence + "Future State Journey")
 - `step-8-product-specification.md`
 - `deliverables/PRD.docx` ← invoke `anthropic-skills:docx` (feature requirements include "Opportunity Addressed" callout; user stories cite the pain point they address)
 - `deliverables/feature-prioritization.xlsx` ← invoke `anthropic-skills:xlsx` (Sheet 1 includes Opportunity Link + Validation Status columns; features without an opportunity link are flagged "Needs validation")

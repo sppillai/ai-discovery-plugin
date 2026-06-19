@@ -1,6 +1,27 @@
 # Changelog
 
-## [1.2.0] — 2026-06-14
+## [1.3.0] — 2026-06-19
+
+### Added
+- **Full product lifecycle OS** — the plugin now covers the complete journey from first idea to launched product and continuous feedback. Discovery (v0.1) is one phase of six; the project folder structure spans all of them.
+- **Root-level project files** — every new project now creates `CLAUDE.md` (phase gates + agent routing), `ROADMAP.md` (versioned phases v0.1→v1.1+), `interview-backlog.md` (continuous validation queue), and `inbox.md` (mid-session idea capture) at the project root.
+- **`opportunity-map.xlsx` at project root** — moved from `PHASE-3-VALUE-PROPOSITION/deliverables/` to the project root. It is now the spine of the entire system, shared across all phases from Step 7 through the Growth phase.
+- **`interview-backlog.md`** — a single, continuously updated list of what to validate with users. Every phase (discovery, design review, post-build, post-launch) can add entries. Agents generate interview guides from open items.
+- **`inbox.md`** — quick capture for new ideas mid-session (during code review, user conversations, or just thinking). Requirements-agent and feedback-agent process it: routes to opportunity map or interview backlog.
+- **Lifecycle folder structure** — `requirements/`, `src/`, `tests/`, `feedback/`, `releases/` created at project start with phase-gated `CLAUDE.md` files.
+- **Requirements agent** (v0.2 MUP Design) — reads the opportunity map and discovery outputs, writes `requirements/PRD.md`, creates design system, screen specs (one `.md` per screen), HTML clickthrough mockups, user testing templates, and breaks the PRD into coding-agent-executable epics with spec, acceptance criteria, design reference, and status.
+- **Feedback agent** (v1.0+ Growth) — ingests typeform exports, usability study notes, interview transcripts, and usage logs. Auto-appends to opportunity map when 3+ users independently surface the same pain (Medium confidence). Queues 1–2 user signals for interview backlog. Flags assumption contradictions as pivot signals with recommended re-run path. Updates `ROADMAP.md` Growth section.
+- **Versioned phases in ROADMAP.md** — v0.1 Discovery, v0.2 MUP Design, v1.0-alpha Build, v1.0 Launch, v1.1+ Growth. Each phase has milestone entries and gate conditions.
+- **Architect agent** now adds low-confidence opportunity map rows to `interview-backlog.md` at Step 7.
+- **Supervisor agent** initialises the full project OS on first session if `ROADMAP.md` doesn't exist. Updates `ROADMAP.md` v0.1 to complete and sets v0.2 as "Ready to Start" after Step 24.
+
+### Changed
+- "What you get" file tree updated to show the full lifecycle folder structure
+- "What this is" description updated to reflect the full product OS, not just discovery
+- Agents table expanded with Requirements Agent and Feedback Agent
+- 24-steps table reorganised under "v0.1 Discovery" within the broader phase overview
+
+## [1.2.0] — 2026-06-19
 
 ### Added
 - **Current state process map** (Step 3) — after profiling the end user, the UX agent now asks "Walk me through what you do TODAY when you need to [job]" and builds `current-state-process-map.xlsx` (2 sheets: step-by-step process with pain severity 1-5 + opportunity gaps column). This is the "before picture" that all downstream steps build on.
