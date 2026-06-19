@@ -31,7 +31,12 @@ claude plugin install ai-product-discovery
 claude plugin marketplace add phuryn/pm-skills
 claude plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill
 
-# 3. Create a project folder and start
+# 3. Verify document-skills is available (powers all Excel/Word/PowerPoint output)
+claude plugin list | grep document-skills
+# Expected: document-skills@anthropic-agent-skills  ✔ enabled
+# Not there? Run: claude plugin install document-skills@anthropic-agent-skills
+
+# 4. Create a project folder and start
 mkdir my-product-idea && cd my-product-idea
 claude  # open Claude Code in this folder
 # then run: /start-discovery
@@ -250,13 +255,14 @@ At each step, discovery agents surface a **💬 Expert Insight** block with a re
 
 ## External skill packs
 
-The agents invoke these open-source Claude Code skill packs at the right steps. Install them as part of setup:
+The agents invoke these Claude Code skill packs at the right steps. Install them as part of setup:
 
-| Skill pack | What it adds |
-|-----------|-------------|
-| [phuryn/pm-skills](https://github.com/phuryn/pm-skills) | 49 PM skills — discovery, strategy, pricing, finance, go-to-market |
-| [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Design system generator for 161 product types (Steps 8 and 23) |
-| [ChatPRD/lennys-podcast-transcripts](https://github.com/ChatPRD/lennys-podcast-transcripts) | 269 Lenny's Podcast transcripts, fetched live at each step |
+| Skill pack | Install required? | What it adds |
+|-----------|:-----------------:|-------------|
+| `document-skills@anthropic-agent-skills` | Check first — often pre-installed | Excel, Word, and PowerPoint file generation (used at every phase). Published by Anthropic. In your plugin list it shows as `document-skills`, but the agents call it via the `anthropic-skills:` namespace — both resolve to the same plugin. |
+| [phuryn/pm-skills](https://github.com/phuryn/pm-skills) | Yes | 49 PM skills — discovery, strategy, pricing, finance, go-to-market |
+| [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Yes | Design system generator for 161 product types (Steps 8 and 23) |
+| [ChatPRD/lennys-podcast-transcripts](https://github.com/ChatPRD/lennys-podcast-transcripts) | No — fetched live | 269 Lenny's Podcast transcripts, fetched at each step |
 
 ---
 
@@ -276,13 +282,38 @@ claude plugin marketplace add phuryn/pm-skills
 claude plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill
 ```
 
-### Step 3 — Verify
+### Step 2b — Check for document-skills (Excel / Word / PowerPoint generation)
+
+This plugin is published by Anthropic and is often already installed with Claude Code. Check first:
+
+```bash
+claude plugin list | grep document-skills
+```
+
+If you see `document-skills@anthropic-agent-skills  ✔ enabled` — you're good, nothing to do.
+
+If it's missing or shows `✘ failed`:
+
+```bash
+claude plugin install document-skills@anthropic-agent-skills
+```
+
+> **Why it shows up as `document-skills` but agents call `anthropic-skills:`** — the `anthropic-agent-skills` plugin registers its skills under the `anthropic-skills:` namespace. Both names refer to the same installed plugin. This is not a separate install.
+
+### Step 3 — Verify everything is enabled
 
 ```bash
 claude plugin list
 ```
 
-You should see `ai-product-discovery@ai-discovery`, `pm-skills`, and `ui-ux-pro-max-skill` all listed as enabled.
+You should see all of these with `✔ enabled`:
+
+```
+ai-product-discovery@ai-discovery
+document-skills@anthropic-agent-skills
+pm-skills@...
+ui-ux-pro-max-skill@...
+```
 
 ### Updating
 
@@ -302,9 +333,10 @@ claude plugin install /path/to/ai-discovery-plugin
 
 ## Requirements
 
-- Claude Code (CLI, desktop, VS Code, or JetBrains extension)
-- `anthropic-skills` for Excel, Word, and PowerPoint generation
-- Brave Search MCP for real market data (optional but strongly recommended)
+- **Claude Code** — CLI, desktop app, VS Code extension, or JetBrains extension
+- **`document-skills@anthropic-agent-skills`** — Excel, Word, and PowerPoint generation. Published by Anthropic; often pre-installed. Verify with `claude plugin list | grep document-skills` (see Installation → Step 2b if missing).
+- **`phuryn/pm-skills`** and **`nextlevelbuilder/ui-ux-pro-max-skill`** — community skill packs (see Installation → Step 2)
+- **Brave Search MCP** — live market data at Steps 1–2 and 9–18 (optional but strongly recommended)
 
 ---
 
