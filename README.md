@@ -89,40 +89,56 @@ At these 10 steps, the AI creates a findings template and waits for you:
 
 ---
 
-## Product lifecycle phases
+## Discovery workflow
+
+The plugin runs across five lifecycle phases. v0.1 is the full 24-step MIT DE discovery process — the detailed step table is below. Everything after v0.1 flows from the validated opportunity map it produces.
 
 | Version | Phase | What happens |
 |---------|-------|-------------|
-| **v0.1** | Discovery | MIT DE 24-step framework — market research, user interviews, opportunity map, business model, PMF validation |
+| **v0.1** | Discovery | MIT DE 24-step framework — market selection, user research, opportunity map, business model, PMF validation |
 | **v0.2** | MUP Design | PRD.md, design system, screen specs, HTML clickthrough mockups, user testing, epic breakdown |
-| **v1.0-alpha** | Build | Coding agents pick up epics and build; you review and give instructions |
-| **v1.0** | Launch | Beta users, feedback capture live, PMF survey |
+| **v1.0-alpha** | Build | Coding agents pick up epics; you review and give instructions |
+| **v1.0** | Launch | Beta users, feedback capture live, PMF re-confirmation |
 | **v1.1+** | Growth | Feedback synthesis updates opportunity map; new priorities emerge; cycle continues |
 
 ### The 24 discovery steps (v0.1)
 
-| Phase | Steps | What gets built |
-|-------|-------|-----------------|
-| **1 — Market Selection** | 1–2 | Target market segment, beachhead selection, TAM analysis |
-| **2 — User Research** | 3–6 | End user profile, current state process map, personas, lifecycle + before/after map, interview guide |
-| **3 — Value Proposition** | 7–8 | Opportunity map (root), value prop grounded in top opportunity, full PRD, feature prioritization |
-| **4 — Business Model** | 9–18 | Revenue streams, pricing, LTV/CAC, GTM channels, financial model, investor deck |
-| **5 — Validation** | 19–22 | Assumption matrix, MVP design, MVP scope, PMF confirmation |
-| **6 — Execution** | 23–24 | Development roadmap, tech architecture, launch plan |
+The MIT DE framework tells you **what** to validate in the right order. What it doesn't enforce is the connective tissue between user pain and the features you commit to building. This plugin adds that thread across Steps 3, 5, 6, 7, and 8 — look for the ✨ column below.
 
-## What we added to the framework
+> **🛑 Human action required** at 10 steps — the AI creates a findings template and waits. You do the real-world work (interviews, pricing conversations, survey) and return with results before the next step proceeds.
 
-The MIT DE framework tells you **what** to validate in the right order. What it doesn't enforce is the connective tissue between user pain and the features you commit to building. Without that thread, value propositions become generic, feature lists are driven by gut feel, and no one can answer "why are we building this?" when the PRD is written.
-
-This plugin adds a structured pain-to-feature chain across Steps 3, 5, 6, 7, and 8:
-
-| Step | What's added | Why it matters |
-|------|-------------|----------------|
-| **3 — End User Profile** | Current state process map — a step-by-step map of what the user does TODAY, with pain severity (1–5) and emotional state at each step | Creates the "before picture" that everything downstream anchors to |
-| **5 — Lifecycle Use Case** | Before & After transformation sheet added to the journey map Excel | Makes the value the product delivers concrete: each step of today's process mapped against what changes with the product |
-| **6 — User Validation** | Interview findings loop back to update the process map — pain severity is re-scored based on real confirmation rate, new pains are added, every row marked as AI-assumed or interview-confirmed | Replaces AI assumptions with real evidence before the value prop is written |
-| **7 — Value Proposition** | Opportunity map built from the top-severity pain points before the value prop is drafted — each pain becomes an opportunity with Impact × Confidence priority score | Value prop is written from the highest-ranked opportunity, not generic benefit language |
-| **8 — Product Specification** | Every feature in the PRD links to a row in the opportunity map — features without a link are flagged "Needs validation" | Every feature can answer: which specific pain does this solve, how severe is it, and what process step does it change |
+| # | Step | Frameworks & methodologies | ✨ Added beyond MIT DE | Deliverable | 🛑 |
+|---|------|---------------------------|----------------------|-------------|:--:|
+| | **── Phase 1 — Market Selection ────────────────────────────────────────────────────────** | | | | |
+| 1 | Market segmentation | TAM/SAM/SOM · PESTEL · Porter's Five Forces *(Michael Porter)* · `pm-skills:tam-sam-som-calculator` · `pm-skills:pestel-analysis` | — | `market-segmentation-matrix.xlsx` | |
+| 2 | Beachhead market | Lean Canvas *(Ash Maurya)* · Opportunity Solution Tree *(Teresa Torres)* · `pm-skills:lean-ux-canvas` · `pm-skills:opportunity-solution-tree` | — | `tam-analysis.xlsx` | |
+| | **── Phase 2 — User Research ───────────────────────────────────────────────────────────** | | | | |
+| 3 | End user profile | Jobs to Be Done *(Clayton Christensen, Tony Ulwick, Bob Moesta)* · `pm-skills:jobs-to-be-done` | **Current state process map** — step-by-step map of what the user does TODAY, with pain severity 1–5 and emotional state at each step. The "before picture" that all downstream work anchors to. | `current-state-process-map.xlsx` | 🛑 |
+| 4 | Persona | Empathy Mapping *(Dave Gray)* · `pm-skills:proto-persona` · `pm-skills:user-story` | — | `personas.docx` | |
+| 5 | Full lifecycle use case | Customer Journey Mapping · `pm-skills:customer-journey-mapping-workshop` · `pm-skills:discovery-interview-prep` | **Before & After sheet** — each step of today's process mapped against what changes with the product. Before = red/orange, after = green. Makes the value transformation concrete at each process step. | `user-journey-map.xlsx` (2 sheets) | |
+| 6 | User validation interviews | Discovery interviews *(Steve Blank)* · JTBD · `pm-skills:discovery-interview-prep` · `pm-skills:discovery-process` | **Interview loopback** — re-scores each pain point's severity from real confirmation rate; marks every row as AI-assumed / interview-confirmed / interview-discovered; saves as `v2`. Replaces AI assumptions with real evidence before the value prop is written. | `interview-guide.docx` · `current-state-process-map-v2.xlsx` | 🛑 |
+| | **── Phase 3 — Value Proposition ──────────────────────────────────────────────────────** | | | | |
+| 7 | Value proposition | Opportunity Solution Tree *(Teresa Torres)* · `pm-skills:positioning-statement` · `pm-skills:opportunity-solution-tree` | **Opportunity map** — top-severity pains become opportunities scored Impact × Confidence. Value prop written from the highest-ranked row, not generic benefit language. Lives at project root; shared across all phases, design, code, and feedback. | `opportunity-map.xlsx` *(project root)* | |
+| 8 | Product specification | MoSCoW · User Story Mapping · `pm-skills:prd-development` · `pm-skills:user-story-mapping` · `ui-ux-pro-max-skill` | **Feature traceability** — every PRD feature links to an opportunity map row. Features without a link are flagged "Needs validation" in red. Every feature answers: which pain does this solve, how severe is it, what process step does it change? | `PRD.docx` · `feature-prioritization.xlsx` | |
+| | **── Phase 4 — Business Model ──────────────────────────────────────────────────────────** | | | | |
+| 9 | Revenue streams | SaaS revenue models · `pm-skills:saas-revenue-growth-metrics` · `pm-skills:finance-metrics-quickref` | — | `step-9-revenue-streams.md` | |
+| 10 | Market sizing | TAM/SAM/SOM · `pm-skills:tam-sam-som-calculator` | — | `tam-sam-som.xlsx` | |
+| 11 | Pricing strategy | Van Westendorp Price Sensitivity Meter · Value-based Pricing *(Madhavan Ramanujam)* · `pm-skills:finance-based-pricing-advisor` · `pm-skills:saas-economics-efficiency-metrics` | — | `ltv-cac-model.xlsx` (3 sheets: tiers, LTV, CAC by channel) | 🛑 |
+| 12 | Customer acquisition | Growth Loops *(Brian Balfour)* · McKinsey Growth Pyramid · `pm-skills:acquisition-channel-advisor` · `pm-skills:organic-growth-advisor` | — | `step-12-customer-acquisition.md` | 🛑 |
+| 13 | GTM channels | Growth Loops *(Brian Balfour)* · Positioning *(Ries & Trout)* · `pm-skills:acquisition-channel-advisor` · `pm-skills:positioning-workshop` | — | `step-13-gtm-channels.md` | |
+| 14 | Partnerships | Ansoff Matrix · `pm-skills:product-strategy-session` | — | `step-14-partnerships.md` | |
+| 15 | Business model validation | Business Model Canvas *(Alexander Osterwalder)* · Value Proposition Canvas · Porter's Five Forces · `pm-skills:lean-ux-canvas` · `pm-skills:pestel-analysis` | — | `business-model-canvas.docx` | 🛑 |
+| 16 | Burn rate & runway | SaaS unit economics · `pm-skills:business-health-diagnostic` · `pm-skills:saas-economics-efficiency-metrics` | — | `burn-rate-analysis.xlsx` | |
+| 17 | Financial model | Cohort retention modeling · `pm-skills:finance-based-pricing-advisor` · `pm-skills:saas-revenue-growth-metrics` · `pm-skills:business-health-diagnostic` | — | `financial-projections.xlsx` (4 sheets: P&L, revenue build, costs, unit economics) | |
+| 18 | Investment narrative | North Star Metric *(Sean Ellis)* · `pm-skills:positioning-statement` · `pm-skills:product-strategy-session` · `pm-skills:saas-revenue-growth-metrics` | — | `investor-deck.pptx` | |
+| | **── Phase 5 — Validation ───────────────────────────────────────────────────────────────** | | | | |
+| 19 | Key assumptions | Assumption mapping · `pm-skills:assumption-testing` | — | `assumption-matrix.xlsx` | 🛑 |
+| 20 | MVP design | Pretotyping *(Alberto Savoia)* · Build–Measure–Learn *(Eric Ries)* · `pm-skills:pol-probe` · `pm-skills:epic-hypothesis` | — | `step-20-mvp-design.md` | 🛑 |
+| 21 | MVP scope | User Story Mapping · `pm-skills:user-story-mapping` · `pm-skills:epic-breakdown-advisor` | — | `mvp-scope.docx` · `mvp-prioritization.xlsx` | |
+| 22 | PMF confirmation | Sean Ellis PMF survey *(>40% threshold)* · McKinsey PMF signals · `pm-skills:organic-growth-advisor` · `pm-skills:saas-revenue-growth-metrics` | — | `pmf-validation-report.docx` | 🛑 |
+| | **── Phase 6 — Execution ────────────────────────────────────────────────────────────────** | | | | |
+| 23 | Development plan | OKRs *(Andy Grove / John Doerr)* · `ui-ux-pro-max-skill` · `pm-skills:roadmap-planning` · `pm-skills:epic-breakdown-advisor` | — | `technical-roadmap.xlsx` · `product-architecture-deck.pptx` | 🛑 |
+| 24 | Launch plan | `pm-skills` | — | `launch-checklist.xlsx` | 🛑 |
 
 The result is a PRD where features are not invented — they are derived from real user pain, validated by interviews, and prioritised by opportunity impact.
 
